@@ -1,58 +1,69 @@
-// src/app/page.tsx
-
-/**
- * Home Page Test
- * Validates typography system, color tokens,
- * layout containers, and spacing rhythm.
- */
+import Hero from "@/components/home/Hero";
+import SectionSlogan from "@/components/shared/SectionSlogan";
+import FeatureSplit from "@/components/home/FeatureSplit";
+import PassionBand from "@/components/home/PassionBand";
+import PortfolioSection from "@/components/home/PortfolioSection";
+import FieldsOfStudySection from "@/components/home/FieldsOfStudySection";
+import CTABand from "@/components/shared/CTABand";
 
 export default function HomePage() {
   return (
     <>
-      {/* Hero Section */}
-      <section className="section-padding bg-editorialWhite">
-        <div className="container">
-          <h1 className="heading-display mb-8">
-            Professional Artistic Education
-          </h1>
+      <Hero />
+      <SectionSlogan />
 
-          <p className="body-intro max-w-2xl mb-12">
-            A professional artistic makeup academy that combines real-world
-            industry preparation with creative identity development.
-          </p>
+      <FeatureSplit
+        imageLeft
+        imageSrc="/the_program_home.png"
+        title={
+          <>
+            The 3-Year <br />
+            Professional Makeup Program
+          </>
+        }
+        paragraphs={[
+          "A progressive academic journey structured across three distinct years - Foundations, Advanced Mastery, and Educator & Trainer.",
+          "Each year functions as an independent diploma, allowing artists to begin, advance, or specialize according to their rhythm and professional goals.",
+          "Built with precision and grounded in real industry experience, the program develops technical excellence, artistic identity, and long-term professional confidence."
+        ]}
+        buttonLabel="→ Explore the 3-Year Program"
+        buttonHref="/programs"
+      />
 
-          <div className="flex gap-6">
-            <button className="bg-charcoal text-white px-8 py-4 ui-button">
-              APPLY NOW
-            </button>
+      <FeatureSplit
+        imageLeft={false}
+        imageSrc="/about_home.png"
+        title={
+          <>
+            A DIFFERENT KIND OF<br />
+            MAKEUP ACADEMY
+          </>
+        }
+        paragraphs={[
+          "M·ART was created to unite excellence with inclusivity - a space where discipline and creativity grow side by side.",
+          "Here, makeup is taught as a complete profession, guided by industry-active educators and rooted in the realities of the field - open to beginners, self-taught artists, and professionals in evolution."
+        ]}
+        buttonLabel="→ Discover Our Academy"
+        buttonHref="/the-academy"
+      />
 
-            <button className="border border-charcoal text-charcoal px-8 py-4 ui-button">
-              PROGRAM DETAILS
-            </button>
-          </div>
-        </div>
-      </section>
+      <PassionBand />
+      <PortfolioSection />
+      <FieldsOfStudySection />
 
-      {/* Accent Test Section */}
-      <section className="section-padding bg-white">
-        <div className="container grid grid-cols-2 gap-12">
-          <div className="bg-coral text-white p-10">
-            <h2 className="heading-lg mb-4">Creative Identity</h2>
-            <p className="body-standard">
-              Industry immersion, portfolio building, and structured artistic
-              development.
-            </p>
-          </div>
-
-          <div className="bg-honey text-charcoal p-10">
-            <h2 className="heading-lg mb-4">Professional Grounding</h2>
-            <p className="body-standard">
-              Real terrain preparation, employment pathways, and technical
-              excellence.
-            </p>
-          </div>
-        </div>
-      </section>
+      <CTABand
+        tone="dark"
+        heading="SEPTEMBER INTAKE"
+        description="Applications are open for the upcoming academic year. Limited places ensure a focused, supportive, and demanding learning environment."
+        buttons={[
+          { text: "→ Learn More", variant: "solid", link: "/programs" },
+          {
+            text: "→ Schedule an Information Meeting",
+            variant: "outline",
+            link: "/contact?intent=meeting",
+          },
+        ]}
+      />
     </>
   );
 }

@@ -1,0 +1,43 @@
+/* =========================================
+   M-ART Academy Design Tokens
+   ========================================= */
+
+:root {
+  /* =====================
+     COLOR SYSTEM
+     ===================== */
+
+  /* Primary */
+  --color-deep-charcoal: #050505;
+  --color-warm-black: #23252B;
+  --color-white: #FFFFFF;
+  --color-editorial-white: #F7F6F3;
+
+  /* Accents */
+  --color-muted-coral: #E05C57;
+  --color-muted-honey: #B98C2C;
+
+  /* =====================
+     SPACING SYSTEM (4px grid)
+     ===================== */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* =====================
+     MAX WIDTHS
+     ===================== */
+
+  --container-max: 1280px;
+  --container-narrow: 960px;
+}
