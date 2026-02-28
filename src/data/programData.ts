@@ -70,7 +70,7 @@ export const programData: Record<1 | 2 | 3, YearContent> = {
         ],
         closingStatement:
           "Creative. Inclusive. Professionally transformative.",
-        image: "/year1-training.png",
+        image: "/year1-training.jpg",
         imagePosition: "right",
         backgroundColor: "white",
       },

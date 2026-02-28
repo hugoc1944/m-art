@@ -109,7 +109,7 @@ export default function SectionSlogan() {
         {[1, 2, 3, 4].map((i) => (
           <div key={i} className="relative h-[400px]">
             <Image
-              src={`/slog_${i}.png`}
+              src={`/slog${i}.jpg`}
               alt="Portrait"
               fill
               className="object-cover"
@@ -124,7 +124,7 @@ export default function SectionSlogan() {
         {[1, 2, 3, 4].map((i) => (
           <div key={i} className="relative h-[280px]">
             <Image
-              src={`/slog_${i}.png`}
+              src={`/slog${i}.jpg`}
               alt="Portrait"
               fill
               className="object-cover object-center"

@@ -14,7 +14,7 @@ export default function HomePage() {
 
       <FeatureSplit
         imageLeft
-        imageSrc="/the_program_home.png"
+        imageSrc="/home_the_program.jpg"
         title={
           <>
             The 3-Year <br />
@@ -32,7 +32,7 @@ export default function HomePage() {
 
       <FeatureSplit
         imageLeft={false}
-        imageSrc="/about_home.png"
+        imageSrc="/home_about.jpg"
         title={
           <>
             A DIFFERENT KIND OF<br />

@@ -29,53 +29,74 @@ export default function ContentSection({
 }: ContentSectionProps) {
   const isImageLeft = imagePosition === "left";
 
-  /* =========================================================
-     OVERLAY VARIANT — FULL WIDTH IMAGE + TEXT RIGHT
-  ========================================================= */
-  if (variant === "overlay") {
-    return (
-      <section className="relative w-full overflow-hidden">
-        <div className="relative h-[700px] md:h-[680px] sm:h-auto">
+/* =========================================================
+   OVERLAY VARIANT — FULL WIDTH IMAGE + TEXT RIGHT
+========================================================= */
+if (variant === "overlay") {
+  return (
+    <section className="relative w-full overflow-hidden">
+      <div className="relative h-[700px] md:h-[680px] sm:h-auto">
 
-          {/* Background Image */}
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-[center_30%] sm:bg-[center]"
+          style={{ backgroundImage: `url(${image})` }}
+        />
+
+        {/* Mobile Overlay Layer (ONLY mobile) */}
+        <div className="absolute inset-0 bg-white/70 sm:bg-transparent md:bg-transparent" />
+
+        {/* RIGHT TEXT BLOCK */}
+        <div className="relative z-10 h-full flex items-center justify-end sm:justify-center md:justify-end md:mr-20">
+
           <div
-            className="absolute inset-0 bg-cover bg-[center_30%]"
-            style={{ backgroundImage: `url(${image})` }}
-          />
+            className="
+              w-full max-w-[620px]
+              pr-[8%] md:pr-[40px]
+              
+              sm:mr-0
+              sm:px-6
+              sm:py-20
+            "
+          >
 
-          {/* RIGHT TEXT BLOCK */}
-          <div className="relative z-10 h-full flex items-center justify-end">
+            <h2 className="
+              heading-lg text-[#050505]
+              mb-8
+              max-w-[560px]
+              sm:max-w-full
+            ">
+              {heading}
+            </h2>
 
-            <div className="w-full max-w-[620px] pr-[8%] md:pr-[40px] mr-20 sm:px-6 sm:py-16">
+            <div className="pl-6 md:pl-8 sm:pl-0">
+              {bodyParagraphs.map((p, i) => (
+                <p
+                  key={i}
+                  className="
+                    body-standard text-[#050505]
+                    mb-4
+                    leading-[1.45]
+                  "
+                >
+                  {p}
+                </p>
+              ))}
 
-              <h2 className="heading-lg text-[#050505] mb-8 max-w-[560px]">
-                {heading}
-              </h2>
-
-              <div className="pl-6 md:pl-8">
-                {bodyParagraphs.map((p, i) => (
-                  <p
-                    key={i}
-                    className="body-standard text-[#050505] mb-4 leading-[1.45]"
-                  >
-                    {p}
-                  </p>
-                ))}
-
-                {closingStatement && (
-                  <p className="label-accent text-[#050505] mt-6">
-                    {closingStatement}
-                  </p>
-                )}
-              </div>
-
+              {closingStatement && (
+                <p className="label-accent text-[#050505] mt-6">
+                  {closingStatement}
+                </p>
+              )}
             </div>
 
           </div>
+
         </div>
-      </section>
-    );
-  }
+      </div>
+    </section>
+  );
+}
 
   /* =========================================================
      SPLIT VARIANT (UNCHANGED)

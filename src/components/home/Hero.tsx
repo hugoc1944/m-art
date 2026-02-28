@@ -8,18 +8,16 @@ export default function Hero() {
 
       {/* Background */}
       <Image
-        src="/hero_2.png"
-        alt="Hero Background"
-        fill
-        priority
-        sizes="100vw"
-        className="
-          object-cover
-          object-[center_60%]
-          md:object-center
-          sm:object-[left_40%]
-        "
-      />
+      src="/hero_2.png"
+      alt="Hero Background"
+      fill
+      priority
+      quality={95}
+      sizes="(max-width: 640px) 100vw,
+            (max-width: 1024px) 100vw,
+            100vw"
+      className="object-cover object-[center_60%] md:object-center sm:object-[left_40%]"
+    />
 
       {/* Overlay */}
       <div className="
