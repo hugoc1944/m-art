@@ -9,7 +9,7 @@ const programs = [
   {
     year: 1,
     title: "FOUNDATIONS",
-    subtitle: "Professional Makeup Program — Year 1",
+    subtitle: "Professional Makeup Program - Year 1",
     description:
       "Build the technical and artistic foundations required to enter the professional makeup industry with structure and discipline.",
     tags: ["TECHNICAL BASE", "PORTFOLIO", "INDUSTRY DISCIPLINE"],
@@ -19,7 +19,7 @@ const programs = [
   {
     year: 2,
     title: "ADVANCED MASTERY",
-    subtitle: "Professional Makeup Program — Year 2",
+    subtitle: "Professional Makeup Program - Year 2",
     description:
       "Affirm your artistic identity and master advanced techniques designed for premium professional positioning.",
     tags: ["MORPHOLOGY", "EDITORIAL", "LUXURY MARKET"],
@@ -29,7 +29,7 @@ const programs = [
   {
     year: 3,
     title: "EDUCATOR & TRAINER",
-    subtitle: "Professional Makeup Program — Year 3",
+    subtitle: "Professional Makeup Program - Year 3",
     description:
       "Transform expertise into transmission. Develop leadership, pedagogy, and professional authority.",
     tags: ["PEDAGOGY", "BRAND TRAINING", "LEADERSHIP"],
