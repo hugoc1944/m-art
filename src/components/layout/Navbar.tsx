@@ -16,6 +16,9 @@ export default function Navbar() {
   const pathname = usePathname();
   const isStudentsPage = pathname === "/students";
   const isCompact = isScrolled || isStudentsPage || isMenuOpen;
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
   /* =============================
      Scroll Detection
   ============================= */
