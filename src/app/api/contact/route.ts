@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     await resend.emails.send({
       from: "M-Art Academy <contact@m-art.webtogo.pt>",
       to: ["contact@m-art.webtogo.pt"],
-      subject: `New Contact Enquiry – ${firstName} ${lastName}`,
+      subject: `New Contact Enquiry - ${firstName} ${lastName}`,
       html: `
         <div style="font-family: Arial, Helvetica, sans-serif; background:#ffffff; padding:40px;">
           <h2 style="margin-bottom:24px;">New Enquiry Submission</h2>
@@ -56,7 +56,7 @@ export async function POST(req: Request) {
     await resend.emails.send({
       from: "M-Art Academy <contact@m-art.webtogo.pt>",
       to: [email],
-      subject: "We’ve received your enquiry – M•ART Academy",
+      subject: "We’ve received your enquiry - M•ART Academy",
       html: generateUserEmailTemplate({
         firstName,
         request,
@@ -97,11 +97,19 @@ function generateUserEmailTemplate({
                 
                 <!-- Logo Icon -->
                 <img 
-                  src="https://m-art.webtogo.pt/logo_v2.png" 
-                  alt="M-ART Icon" 
-                  width="60" 
-                  height="36"
-                  style="display:block; margin:0 auto 6px auto;"
+                src="https://m-art.webtogo.pt/logo_v2.png" 
+                alt="M-ART Icon"
+                width="60"
+                style="
+                    display:block;
+                    margin:0 auto 6px auto;
+                    width:60px;
+                    height:auto;
+                    max-width:60px;
+                    border:0;
+                    outline:none;
+                    text-decoration:none;
+                "
                 />
 
                 <!-- Brand -->
