@@ -7,6 +7,7 @@ export interface YearContent {
     headline: string;
     subheadline: string;
     backgroundImage: string;
+    backgroundImageMobile?: string;
   };
   infoBand: {
     diploma: string;
@@ -35,6 +36,7 @@ export const programData: Record<1 | 2 | 3, YearContent> = {
       subheadline:
         "From beauty to cinema. From fashion to transformation. Celebrate every face.",
       backgroundImage: "/year1-hero.jpg",
+      backgroundImageMobile: "/year1-hero-mobile.jpg",
     },
     infoBand: {
       diploma:
@@ -109,6 +111,7 @@ export const programData: Record<1 | 2 | 3, YearContent> = {
       subheadline:
         "Affirm your signature. Refine your expertise. Own your position.",
       backgroundImage: "/year2-hero.jpg",
+      backgroundImageMobile: "/year2-hero-mobile.jpg",
     },
     infoBand: {
       diploma:
@@ -205,6 +208,7 @@ export const programData: Record<1 | 2 | 3, YearContent> = {
       subheadline:
         "Transmit. Lead. Inspire. Shape the future of artistry.",
       backgroundImage: "/year3-hero.jpg",
+      backgroundImageMobile: "/year3-hero-mobile.jpg",
     },
     infoBand: {
       diploma:

@@ -10,6 +10,7 @@ interface ProgramHeroProps {
   headline: string;
   subheadline: string;
   backgroundImage: string;
+  backgroundImageMobile?: string;
 }
 
 export default function ProgramHero({
@@ -18,6 +19,7 @@ export default function ProgramHero({
   headline,
   subheadline,
   backgroundImage,
+  backgroundImageMobile,
 }: ProgramHeroProps) {
 
   const imagePosition =
@@ -30,14 +32,27 @@ export default function ProgramHero({
       
       {/* Background Image */}
       <div className="absolute inset-0">
+
+        {/* Desktop / Tablet */}
         <Image
           src={backgroundImage}
           alt={`Professional Makeup Program Year ${year}`}
           fill
           priority
-          sizes="100vw"
-          className={imagePosition}
+          sizes="(max-width: 640px) 0px, 100vw"
+          className={`hidden sm:block ${imagePosition}`}
         />
+
+        {/* Mobile */}
+        <Image
+          src={backgroundImageMobile ?? backgroundImage}
+          alt={`Professional Makeup Program Year ${year}`}
+          fill
+          priority
+          sizes="100vw"
+          className="sm:hidden object-cover object-center"
+        />
+
         <div className="absolute inset-0 bg-black/35 md:bg-black/40 sm:bg-black/45" />
       </div>
 

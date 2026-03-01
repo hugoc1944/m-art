@@ -14,6 +14,7 @@ const programs = [
       "Build the technical and artistic foundations required to enter the professional makeup industry with structure and discipline.",
     tags: ["TECHNICAL BASE", "PORTFOLIO", "INDUSTRY DISCIPLINE"],
     image: "/year1-hero.jpg",
+    imageMobile: "/year1-hero-mobile.jpg",
     href: "/programs/professional-makeup-year-1",
   },
   {
@@ -24,6 +25,7 @@ const programs = [
       "Affirm your artistic identity and master advanced techniques designed for premium professional positioning.",
     tags: ["MORPHOLOGY", "EDITORIAL", "LUXURY MARKET"],
     image: "/year2-hero.jpg",
+    imageMobile: "/year2-hero-mobile.jpg",
     href: "/programs/professional-makeup-year-2",
   },
   {
@@ -34,6 +36,7 @@ const programs = [
       "Transform expertise into transmission. Develop leadership, pedagogy, and professional authority.",
     tags: ["PEDAGOGY", "BRAND TRAINING", "LEADERSHIP"],
     image: "/year3-hero.jpg",
+    imageMobile: "/year3-hero-mobile.jpg",
     href: "/programs/professional-makeup-year-3",
   },
 ];
@@ -119,12 +122,22 @@ export default function ProgramsPage() {
                 <div className="group relative w-full h-[520px] md:h-[420px] sm:h-auto sm:min-h-[480px] overflow-hidden cursor-pointer">
 
                   <div className="absolute inset-0">
+                    {/* Desktop / Tablet */}
                     <Image
                       src={program.image}
                       alt={program.subtitle}
                       fill
+                      sizes="(max-width: 640px) 0px, 100vw"
+                      className="hidden sm:block object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+
+                    {/* Mobile */}
+                    <Image
+                      src={program.imageMobile ?? program.image}
+                      alt={program.subtitle}
+                      fill
                       sizes="100vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="sm:hidden object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/45 group-hover:bg-black/40 transition-all duration-300" />
                   </div>

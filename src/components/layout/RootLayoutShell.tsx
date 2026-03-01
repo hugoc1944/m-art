@@ -53,20 +53,20 @@ export default function RootLayoutShell({
 
       {/* Layout with fade-in */}
       {introFinished && (
-        <motion.div
-          initial={{ filter: "blur(8px)" }}
-          animate={{ filter: layoutVisible ? "blur(0px)" : "blur(8px)" }}
-          transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
-          className="min-h-screen flex flex-col bg-editorialWhite text-charcoal"
-        >
+        <div className="min-h-screen flex flex-col bg-editorialWhite text-charcoal">
           <Navbar />
 
-          <main className="flex-1 pt-[70px]">
+          <motion.main
+            initial={{ filter: "blur(8px)" }}
+            animate={{ filter: layoutVisible ? "blur(0px)" : "blur(8px)" }}
+            transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
+            className="flex-1 pt-[70px]"
+          >
             {children}
-          </main>
+          </motion.main>
 
           <Footer />
-        </motion.div>
+        </div>
       )}
     </>
   );
