@@ -31,7 +31,7 @@ export default function InfoBand({ diploma }: InfoBandProps) {
     {
       icon: "/icons/location.png",
       label: "LOCATION",
-      value: "Lausanne, Switzerland",
+      value: "Geneva, Switzerland",
     },
   ];
 
