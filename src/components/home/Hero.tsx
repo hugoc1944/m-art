@@ -6,15 +6,28 @@ export default function Hero() {
   return (
     <section className="relative w-full overflow-hidden h-[690px] lg:h-[690px] md:h-[620px] sm:min-h-[520px]">
 
-      {/* Background */}
-      <Image
-      src="/hero_2.png"
-      alt="Hero Background"
-      fill
-      priority
+      {/* ================= BACKGROUND (ART DIRECTED) ================= */}
+      <>
+        {/* Desktop & Tablet */}
+        <Image
+          src="/hero_2.jpg"
+          alt="Hero Background"
+          fill
+          priority
+          sizes="(max-width: 1024px) 0px, 100vw"
+          className="hidden sm:block object-cover object-[center_60%]"
+        />
 
-      className="object-cover object-[center_60%] md:object-center sm:object-[left_40%]"
-    />
+        {/* Mobile */}
+        <Image
+          src="/hero_2_mobile.jpg"
+          alt="Hero Background"
+          fill
+          priority
+          sizes="100vw"
+          className="sm:hidden object-cover object-center"
+        />
+      </>
 
       {/* Overlay */}
       <div className="

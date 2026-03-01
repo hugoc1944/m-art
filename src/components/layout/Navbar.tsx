@@ -290,37 +290,51 @@ export default function Navbar() {
   {/* =========================================================
       MOBILE OVERLAY
   ========================================================= */}
-  <div
-    className={cn(
-      "xl:hidden fixed inset-0 z-40 bg-[var(--color-deep-charcoal)] text-white transition-all duration-500",
-      isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-    )}
-  >
-    <div className="h-full flex flex-col justify-center px-[var(--space-6)]">
+  {/* =========================================================
+    MOBILE OVERLAY
+========================================================= */}
+<div
+  className={cn(
+    "xl:hidden fixed inset-0 z-40 bg-[var(--color-deep-charcoal)] text-white transition-all duration-500",
+    isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+  )}
+>
+  <div className="h-full overflow-y-auto px-[var(--space-6)]">
+
+    <div className="min-h-full flex flex-col justify-center py-[var(--space-16)]">
 
       <nav className="flex flex-col gap-[var(--space-8)] text-[28px] font-bold tracking-[-0.5px] uppercase">
 
         <Link href="/" onClick={() => setIsMenuOpen(false)}>HOME</Link>
-
         <Link href="/the-academy" onClick={() => setIsMenuOpen(false)}>THE ACADEMY</Link>
-
         <Link href="/programs" onClick={() => setIsMenuOpen(false)}>PROGRAMS</Link>
-
         <Link href="/modules" onClick={() => setIsMenuOpen(false)}>INDIVIDUAL MODULES</Link>
-
         <Link href="/students" onClick={() => setIsMenuOpen(false)}>STUDENTS</Link>
-
         <Link href="/contact" onClick={() => setIsMenuOpen(false)}>CONTACT</Link>
 
       </nav>
 
       <div className="mt-[var(--space-12)] border-t border-white/10 pt-[var(--space-8)] flex flex-col gap-[var(--space-4)]">
 
-        <Button href="/brochure" variant="solid" tone="light" size="sm" icon="download" className="w-full">
+        <Button
+          href="/brochure"
+          variant="solid"
+          tone="light"
+          size="sm"
+          icon="download"
+          className="w-full"
+        >
           DOWNLOAD A BROCHURE
         </Button>
 
-        <Button href="/contact?intent=meeting" variant="outline" tone="light" size="sm" icon="arrowRight" className="w-full">
+        <Button
+          href="/contact?intent=meeting"
+          variant="outline"
+          tone="light"
+          size="sm"
+          icon="arrowRight"
+          className="w-full"
+        >
           Request an Information Meeting
         </Button>
 
@@ -335,6 +349,7 @@ export default function Navbar() {
 
     </div>
   </div>
+</div>
     </>
   );
 }

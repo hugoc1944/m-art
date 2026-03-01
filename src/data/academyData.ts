@@ -5,12 +5,14 @@ export interface Teacher {
   name: string;
   title: string;
   image: string;
+  imageMobile?: string;
   bio: string[];
 }
 
 interface AcademyContent {
   hero: {
     backgroundImage: string;
+    backgroundImageMobile: string;
     headline: string;
     ctaText: string;
     ctaLink: string;
@@ -23,6 +25,7 @@ interface AcademyContent {
 export const academyContent: AcademyContent = {
   hero: {
     backgroundImage: "/about_1.jpg",
+    backgroundImageMobile: "/about_1_mobile.jpg",
     headline: "THE MAKEUP SCHOOL THAT TURNS PASSION INTO PROFESSION.",
     ctaText: "→ Explore our Programs",
     ctaLink: "/programs",
@@ -75,6 +78,7 @@ export const academyContent: AcademyContent = {
         "What we build goes beyond technique. We develop confidence, creative identity, professional posture, and long-term direction.",
       ],
       image: "/about_4.jpg",
+      imageMobile: "/about_4_mobile.jpg",
       variant: "overlay",
       backgroundColor: "transparent",
       textColor: "black",

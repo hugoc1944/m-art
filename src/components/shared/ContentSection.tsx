@@ -8,6 +8,7 @@ export interface ContentSectionProps {
   bodyParagraphs?: string[];
   bulletPoints?: string[];
   image: string;
+  imageMobile?: string;
   imagePosition?: "left" | "right";
   backgroundColor?: "white" | "light-grey" | "black" | "transparent";
   textColor?: "white" | "black";
@@ -21,6 +22,7 @@ export default function ContentSection({
   bodyParagraphs = [],
   bulletPoints = [],
   image,
+  imageMobile,
   imagePosition = "right",
   backgroundColor = "white",
   textColor = "black",
@@ -38,16 +40,23 @@ if (variant === "overlay") {
       <div className="relative h-[700px] md:h-[680px] sm:h-auto">
 
         {/* Background Image */}
+        {/* Desktop & Tablet */}
         <div
-          className="absolute inset-0 bg-cover bg-[center_30%] sm:bg-[center]"
+          className="absolute inset-0 hidden sm:block bg-cover bg-[center_30%]"
           style={{ backgroundImage: `url(${image})` }}
+        />
+
+        {/* Mobile */}
+        <div
+          className="absolute inset-0 sm:hidden bg-cover bg-center"
+          style={{ backgroundImage: `url(${imageMobile ?? image})` }}
         />
 
         {/* Mobile Overlay Layer (ONLY mobile) */}
         <div className="absolute inset-0 bg-white/70 sm:bg-transparent md:bg-transparent" />
 
         {/* RIGHT TEXT BLOCK */}
-        <div className="relative z-10 h-full flex items-center justify-end sm:justify-center md:justify-end md:mr-20">
+        <div className="relative ml-5 md:ml-0 z-10 h-full flex items-center justify-end sm:justify-center md:justify-end md:mr-20">
 
           <div
             className="

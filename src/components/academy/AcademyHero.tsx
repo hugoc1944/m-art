@@ -5,6 +5,7 @@ import Button from "@/components/ui/Button";
 
 interface AcademyHeroProps {
   backgroundImage: string;
+  backgroundImageMobile: string;
   headline: string;
   ctaText: string;
   ctaLink: string;
@@ -12,6 +13,7 @@ interface AcademyHeroProps {
 
 export default function AcademyHero({
   backgroundImage,
+  backgroundImageMobile,
   headline,
   ctaText,
   ctaLink,
@@ -19,17 +21,33 @@ export default function AcademyHero({
   return (
     <section className="relative w-full h-[675px] md:h-[695px] sm:h-[520px] overflow-hidden">
 
-      {/* ================= BACKGROUND ================= */}
-      <div className="absolute inset-0">
-        <Image
-          src={backgroundImage}
-          alt="M-ART Academy"
-          fill
-          priority
-          className="object-cover object-[58%_60%] sm:object-[center_60%] lg:scale-[1.08] lg:translate-x-[60px]"
-        />
-        <div className="absolute inset-0 bg-black/20 md:bg-black/20 sm:bg-black/35" />
-      </div>
+    {/* ================= BACKGROUND (ART DIRECTED) ================= */}
+    <div className="absolute inset-0">
+
+    {/* Desktop & Tablet */}
+    <Image
+        src={backgroundImage}
+        alt="M-ART Academy"
+        fill
+        priority
+        sizes="(max-width: 640px) 0px, 100vw"
+        className="hidden sm:block object-cover object-[58%_60%] lg:scale-[1.08] lg:translate-x-[60px]"
+    />
+
+    {/* Mobile */}
+    <Image
+        src={backgroundImageMobile}
+        alt="M-ART Academy"
+        fill
+        priority
+        sizes="100vw"
+        className="sm:hidden object-cover object-center"
+    />
+
+    {/* Overlay */}
+    <div className="absolute inset-0 bg-black/20 md:bg-black/20 sm:bg-black/35" />
+
+    </div>
 
       {/* ================= CONTENT ================= */}
       <div className="relative z-10 h-full flex items-center">
