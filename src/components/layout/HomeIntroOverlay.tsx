@@ -3,11 +3,22 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function HomeIntroOverlay() {
+interface HomeIntroOverlayProps {
+  onFinish?: () => void;
+}
+
+export default function HomeIntroOverlay({
+  onFinish,
+}: HomeIntroOverlayProps) {
   const [show, setShow] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
+  /* =========================================================
+     INIT — Only on Home & Only Once Per Session
+  ========================================================= */
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const seen = false;
 
     if (!seen && window.location.pathname === "/") {
@@ -16,15 +27,19 @@ export default function HomeIntroOverlay() {
     }
   }, []);
 
+  /* =========================================================
+     HOLD + EXIT CONTROL
+  ========================================================= */
   useEffect(() => {
-    if (imageLoaded && show) {
-      const timer = setTimeout(() => {
-        setShow(false);
-      }, 2000); // HOLD TIME (text visible duration)
+    if (!show || !imageLoaded) return;
 
-      return () => clearTimeout(timer);
-    }
-  }, [imageLoaded, show]);
+    const timer = setTimeout(() => {
+      setShow(false);
+      onFinish?.();
+    }, 1800); // ideal cinematic timing
+
+    return () => clearTimeout(timer);
+  }, [imageLoaded, show, onFinish]);
 
   return (
     <AnimatePresence>
@@ -33,10 +48,10 @@ export default function HomeIntroOverlay() {
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
-          className="fixed inset-0 z-[9999] pointer-events-auto"
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="fixed inset-0 z-[9999] pointer-events-auto bg-black"
         >
-          {/* Background */}
+          {/* Background Image */}
           <img
             src="/intro_screen.jpg"
             alt="M·ART Introduction"
@@ -44,12 +59,15 @@ export default function HomeIntroOverlay() {
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          {/* Text */}
+          {/* Text (only after image loaded) */}
           {imageLoaded && (
             <motion.div
-              className="absolute inset-0 flex items-center justify-center text-white "
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.1, ease: [0.4, 0, 0.2, 1] }}
+              className="absolute inset-0 flex items-center justify-center text-white"
             >
-              <div className="text-center">
+              <div className="text-center select-none">
                 <div
                   className="font-[Didot] font-bold uppercase"
                   style={{

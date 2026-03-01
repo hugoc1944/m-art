@@ -26,11 +26,7 @@ export default function AcademyHero({
           alt="M-ART Academy"
           fill
           priority
-          quality={95}
-          sizes="(max-width: 640px) 100vw,
-            (max-width: 1024px) 100vw,
-            100vw"
-          className="object-cover sm:object-[center_60%] lg:scale-[1.08] lg:translate-x-[60px]"
+          className="object-cover object-[58%_60%] sm:object-[center_60%] lg:scale-[1.08] lg:translate-x-[60px]"
         />
         <div className="absolute inset-0 bg-black/20 md:bg-black/20 sm:bg-black/35" />
       </div>

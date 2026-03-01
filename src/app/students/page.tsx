@@ -42,7 +42,7 @@ export default function StudentsPage() {
       <div className="relative z-10 w-full h-full flex items-center justify-center text-center px-[var(--space-6)]">
         <div className="flex flex-col items-center">
 
-          <h1 className="font-[Didot] font-bold text-white text-[72px] md:text-[52px] sm:text-[36px] tracking-[8px] uppercase">
+          <h1 className="font-[Didot] leading-[1] font-bold text-white text-[72px] md:text-[52px] sm:text-[36px] tracking-[8px] uppercase">
             Coming Soon
           </h1>
 

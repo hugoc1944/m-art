@@ -15,7 +15,7 @@ export default function Navbar() {
   const [isTrainingsOpen, setIsTrainingsOpen] = useState(false);
   const pathname = usePathname();
   const isStudentsPage = pathname === "/students";
-  const isCompact = isScrolled || isStudentsPage;
+  const isCompact = isScrolled || isStudentsPage || isMenuOpen;
   /* =============================
      Scroll Detection
   ============================= */
@@ -230,97 +230,111 @@ export default function Navbar() {
           MOBILE + TABLET NAV
       ========================================================= */}
       <header
-        className={cn(
-          "xl:hidden fixed top-0 left-0 w-full z-50 transition-all duration-500",
-          isCompact ? "h-[72px] bg-black" : "h-[108px] bg-white"
-        )}
-      >
-        <div className="container h-full flex items-center justify-between relative">
+  className={cn(
+    "xl:hidden fixed top-0 left-0 w-full z-50 transition-all duration-500",
+    isCompact ? "h-[72px] bg-black" : "h-[108px] bg-white"
+  )}
+>
+  <div className="container h-full flex items-center justify-between relative">
 
-          {/* Logo system unchanged */}
-          <div className="relative flex-1 h-full">
+    {/* Logo system unchanged — now clickable */}
+    <div className="relative flex-1 h-full">
 
-            <div
-              className={cn(
-                "absolute top-1/2 left-[80px] -translate-y-1/2 transition-all duration-500",
-                isCompact ? "opacity-0 pointer-events-none" : "opacity-100 -translate-x-[60%]"
-              )}
-            >
-              <div className="flex flex-col items-center leading-none gap-[3px]">
-                <Image src="/logo_v2.png" alt="M-ART Logo" width={60} height={36} priority />
-                <span className="brand-logo-sm text-charcoal leading-none">M•ART</span>
-                <span className="text-[9px] tracking-[1.53px] uppercase text-charcoal leading-none whitespace-nowrap">
-                  GENEVA MAKEUP ACADEMY
-                </span>
-              </div>
-            </div>
+      <Link href="/" className="absolute inset-0 z-10" onClick={() => setIsMenuOpen(false)} />
 
-            <div
-              className={cn(
-                "absolute inset-y-0 left-[-20px] flex flex-col justify-center transition-all duration-500 pl-[var(--space-6)] leading-none",
-                isCompact ? "opacity-100" : "opacity-0 pointer-events-none"
-              )}
-            >
-              <span className="font-[Didot] font-bold text-[22px] tracking-[3px] text-white leading-none">
-                M•ART
-              </span>
-              <span className="text-[9px] tracking-[1.53px] uppercase text-white mt-[3px] leading-none">
-                GENEVA MAKEUP ACADEMY
-              </span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Button href="/contact" variant="outline" tone={isCompact ? "light" : "dark"} size="sm">
-              Contact
-            </Button>
-
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={cn("ui-nav tracking-[2px]", isCompact ? "text-white" : "text-charcoal")}
-            >
-              {isMenuOpen ? "CLOSE" : "MENU"}
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* =========================================================
-          MOBILE OVERLAY
-      ========================================================= */}
       <div
         className={cn(
-          "xl:hidden fixed inset-0 z-40 bg-[var(--color-deep-charcoal)] text-white transition-all duration-500",
-          isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          "absolute top-1/2 left-[80px] -translate-y-1/2 transition-all duration-500",
+          isCompact ? "opacity-0 pointer-events-none" : "opacity-100 -translate-x-[60%]"
         )}
       >
-        <div className="h-full flex flex-col justify-center px-[var(--space-6)]">
-
-          <nav className="flex flex-col gap-[var(--space-8)] text-[28px] font-bold tracking-[-0.5px] uppercase">
-            <Link href="/the-academy" onClick={() => setIsMenuOpen(false)}>THE ACADEMY</Link>
-            <Link href="/programs" onClick={() => setIsMenuOpen(false)}>PROGRAMS</Link>
-            <Link href="/modules" onClick={() => setIsMenuOpen(false)}>INDIVIDUAL MODULES</Link>
-            <Link href="/students" onClick={() => setIsMenuOpen(false)}>STUDENTS</Link>
-            <Link href="/contact" onClick={() => setIsMenuOpen(false)}>CONTACT</Link>
-            <Link href="/partnerships" onClick={() => setIsMenuOpen(false)}>PARTNERSHIPS</Link>
-          </nav>
-
-          <div className="mt-[var(--space-12)] border-t border-white/10 pt-[var(--space-8)] flex flex-col gap-[var(--space-4)]">
-            <Button href="/brochure" variant="solid" tone="light" size="sm" icon="download" className="w-full">
-              DOWNLOAD A BROCHURE
-            </Button>
-
-            <Button href="/contact?intent=meeting" variant="outline" tone="light" size="sm" icon="arrowRight" className="w-full">
-              Request an Information Meeting
-            </Button>
-
-            <div className="pt-[var(--space-6)] text-[11px] font-semibold tracking-[1px] uppercase">
-              FR / EN
-            </div>
-          </div>
-
+        <div className="flex flex-col items-center leading-none gap-[3px]">
+          <Image src="/logo_v2.png" alt="M-ART Logo" width={60} height={36} priority />
+          <span className="brand-logo-sm text-charcoal leading-none">M•ART</span>
+          <span className="text-[9px] tracking-[1.53px] uppercase text-charcoal leading-none whitespace-nowrap">
+            GENEVA MAKEUP ACADEMY
+          </span>
         </div>
       </div>
+
+      <div
+        className={cn(
+          "absolute inset-y-0 left-[-20px] flex flex-col justify-center transition-all duration-500 pl-[var(--space-6)] leading-none",
+          isCompact ? "opacity-100" : "opacity-0 pointer-events-none"
+        )}
+      >
+        <span className="font-[Didot] font-bold text-[22px] tracking-[3px] text-white leading-none">
+          M•ART
+        </span>
+        <span className="text-[9px] tracking-[1.53px] uppercase text-white mt-[3px] leading-none">
+          GENEVA MAKEUP ACADEMY
+        </span>
+      </div>
+    </div>
+
+    <div className="flex items-center gap-4">
+      <Button href="/contact" variant="outline" tone={isCompact ? "light" : "dark"} size="sm">
+        Contact
+      </Button>
+
+      <button
+        onClick={() => setIsMenuOpen(!isMenuOpen)}    
+        className={cn("ui-nav tracking-[2px]", isCompact ? "text-white" : "text-charcoal")}
+      >
+        {isMenuOpen ? "CLOSE" : "MENU"}
+      </button>
+    </div>
+  </div>
+</header>
+
+  {/* =========================================================
+      MOBILE OVERLAY
+  ========================================================= */}
+  <div
+    className={cn(
+      "xl:hidden fixed inset-0 z-40 bg-[var(--color-deep-charcoal)] text-white transition-all duration-500",
+      isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+    )}
+  >
+    <div className="h-full flex flex-col justify-center px-[var(--space-6)]">
+
+      <nav className="flex flex-col gap-[var(--space-8)] text-[28px] font-bold tracking-[-0.5px] uppercase">
+
+        <Link href="/" onClick={() => setIsMenuOpen(false)}>HOME</Link>
+
+        <Link href="/the-academy" onClick={() => setIsMenuOpen(false)}>THE ACADEMY</Link>
+
+        <Link href="/programs" onClick={() => setIsMenuOpen(false)}>PROGRAMS</Link>
+
+        <Link href="/modules" onClick={() => setIsMenuOpen(false)}>INDIVIDUAL MODULES</Link>
+
+        <Link href="/students" onClick={() => setIsMenuOpen(false)}>STUDENTS</Link>
+
+        <Link href="/contact" onClick={() => setIsMenuOpen(false)}>CONTACT</Link>
+
+      </nav>
+
+      <div className="mt-[var(--space-12)] border-t border-white/10 pt-[var(--space-8)] flex flex-col gap-[var(--space-4)]">
+
+        <Button href="/brochure" variant="solid" tone="light" size="sm" icon="download" className="w-full">
+          DOWNLOAD A BROCHURE
+        </Button>
+
+        <Button href="/contact?intent=meeting" variant="outline" tone="light" size="sm" icon="arrowRight" className="w-full">
+          Request an Information Meeting
+        </Button>
+
+        <div className="pt-[var(--space-6)] text-[11px] font-semibold tracking-[1px] uppercase flex justify-between">
+          <span>FR / EN</span>
+          <Link href="/partnerships" onClick={() => setIsMenuOpen(false)}>
+            PARTNERSHIPS
+          </Link>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
     </>
   );
 }
