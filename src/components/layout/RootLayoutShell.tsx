@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HomeIntroOverlay from "./HomeIntroOverlay";
+import VideoIntroOverlay from "@/components/intro/VideoIntroOverlay";
 import { usePathname } from "next/navigation";
 
 export default function RootLayoutShell({
@@ -46,9 +47,11 @@ export default function RootLayoutShell({
     <>
       {/* Intro Overlay (Home Only) */}
       {isHome && !introFinished && (
-        <div className="fixed inset-0 z-[9999] bg-black">
-          <HomeIntroOverlay onFinish={() => setIntroFinished(true)} />
-        </div>
+        <VideoIntroOverlay
+          onFinish={() => setIntroFinished(true)}
+          videoSrc="/video_entrance.mp4"
+          posterSrc="/video_cover.png"
+        />
       )}
 
       {/* Layout with fade-in */}
