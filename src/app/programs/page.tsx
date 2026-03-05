@@ -101,8 +101,7 @@ export default function ProgramsPage() {
             ${isBgDark ? "text-white/80" : "text-[#23252b]"}
           `}
         >
-          A progressive yet modular academic structure, allowing each year to be taken independently - from foundational mastery to advanced expertise and professional transmission.
-        </p>
+        A progressive yet modular academic structure, allowing each year to be taken independently, from foundational mastery to advanced expertise and professional transmission.        </p>
       </section>
 
       {/* ===== PROGRAM PANELS ===== */}

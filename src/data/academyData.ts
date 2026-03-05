@@ -32,7 +32,7 @@ export const academyContent: AcademyContent = {
   },
 
   ctaBand1: {
-    heading: "DISCOVER THE MÉTIER",
+    heading: "DISCOVER THE PROFESSION",
     buttons: [
       { text: "→ Learn More", variant: "outline", link: "/programs" },
       {
@@ -49,7 +49,7 @@ export const academyContent: AcademyContent = {
       bodyParagraphs: [
         "M·ART was created from a clear conviction: talent alone is not enough. To build a sustainable career in makeup, you need structure, preparation, and real-world understanding.",
         "Founded by an industry-active professional with over 20 years of experience in spectacle, luxury cosmetics, and festival environments, the academy bridges the gap between creative passion and professional readiness.",
-        "Here, training is transparent, demanding, and anchored in the realities of the métier - not passing trends.",
+        "Here, training is transparent, demanding, and anchored in the realities of the industry, not passing trends.",
       ],
       image: "/about_2.jpg",
       imagePosition: "right",
@@ -60,7 +60,7 @@ export const academyContent: AcademyContent = {
       heading: "WE TEACH A PROFESSION - NOT JUST TECHNIQUE.",
       bodyParagraphs: [
         "At M·ART, makeup is approached in all its dimensions: beauty, artistic transformation, event and festival environments, editorial, theatre, cinema, and luxury cosmetics.",
-        "Students develop strong technical foundations - beauty, mature skin, corrective work - while also exploring artistic creation, FX, and transformation.",
+        "Students develop strong technical foundations in beauty, mature skin, and corrective work, while also exploring artistic creation, FX, and transformation.",
         "But learning goes further than technique. We prepare students for real professional environments: client simulations, event scenarios, independence management, teamwork, and industry expectations.",
         "Our mission is to help each student build not only skill, but identity, vision, and a deep understanding of the profession as a whole.",
       ],
@@ -73,7 +73,7 @@ export const academyContent: AcademyContent = {
       heading: "OPEN TO ALL. COMMITTED TO EXCELLENCE.",
       bodyParagraphs: [
         "The academy welcomes beginners, self-taught artists, and professionals in transition. Whatever your starting point, you have your place here if you share the desire to learn, grow, and evolve.",
-        "We cultivate a serious, inclusive, and supportive environment where creativity is never restrained - but always guided with rigor.",
+        "We cultivate a serious, inclusive, and supportive environment where creativity is never restrained, but always guided with rigor.",
         "Each student progresses at their own rhythm within a structured framework that balances high standards with individualized support.",
         "What we build goes beyond technique. We develop confidence, creative identity, professional posture, and long-term direction.",
       ],
@@ -95,7 +95,7 @@ export const academyContent: AcademyContent = {
         "His passion for education emerged during his time teaching in a makeup school, where he discovered a deep commitment to transmitting knowledge and unlocking each student’s creative potential.",
         "Confronted with real-world industry challenges that could have been avoided with stronger preparation, he chose to build a different kind of academy: transparent, demanding, and grounded in professional reality.",
         "With extensive experience in luxury cosmetics and festival environments, he has worked closely with brands, artists, and diverse audiences in high-pressure settings.",
-        "Excellence, elegance, inclusion, and personal development guide his vision of beauty and education. The academy reflects this philosophy - professional yet supportive, demanding yet deeply human.",
+        "Excellence, elegance, inclusion, and personal development guide his vision of beauty and education. The academy reflects this philosophy: professional yet supportive, demanding yet deeply human.",
       ],
     },
     {
@@ -105,7 +105,7 @@ export const academyContent: AcademyContent = {
       bio: [
         "Camille co-founded the academy with a clear ambition: to train artists who combine creative excellence with strategic intelligence.",
         "With a background in management and development, she brings structure, rigor, and long-term vision to the beauty industry.",
-        "Her philosophy is simple: talent is essential - but mastery, posture, and entrepreneurial awareness create sustainability.",
+        "Her philosophy is simple: talent is essential, but mastery, posture, and entrepreneurial awareness create sustainability.",
         "Through high standards and strategic guidance, she prepares artists to position themselves confidently within luxury environments and build meaningful, lasting careers.",
       ],
     },

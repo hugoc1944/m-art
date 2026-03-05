@@ -25,7 +25,7 @@ export const modulesData: ModuleData[] = [
 
     positioning: [
       "Enter the limitless universe of artistic creation through an intensive designed to liberate imagination and strengthen individual visual identity.",
-      "Makeup is explored as a medium of concept, transformation, texture, and narrative - beyond convention and beyond repetition.",
+      "Makeup is explored as a medium of concept, transformation, texture, and narrative, moving beyond convention and repetition.",
       "Creativity is approached with structure, intention, and professional rigor."
     ],
 
@@ -73,7 +73,7 @@ export const modulesData: ModuleData[] = [
     approach: [
       "Participants are guided step by step through structured technical development, ensuring clarity, discipline, and confidence.",
       "Each technique is adapted to facial morphology, skin characteristics, undertones, and aesthetic intention.",
-      "Beauty is approached inclusively - respecting all skin tones, ages, and individual features."
+      "Beauty is approached inclusively, respecting all skin tones, ages, and individual features."
     ],
 
     techniques: [
@@ -92,7 +92,7 @@ export const modulesData: ModuleData[] = [
 
     ethos: [
       "Accessible to professionals and dedicated enthusiasts alike, this module supports growth in confidence, efficiency, and technical excellence.",
-      "Beauty is approached not as excess - but as balance: intentional, structured, and refined."
+      "Beauty is approached not as excess, but as balance: intentional, structured, and refined."
     ],
   },
 
@@ -105,7 +105,7 @@ export const modulesData: ModuleData[] = [
     heroImage: "/module_3.jpg",
 
     positioning: [
-      "Certain life experiences profoundly transform one’s relationship with personal image. Medical treatments - including chemotherapy - may sensitize the skin and alter facial features.",
+      "Certain life experiences profoundly transform one’s relationship with personal image. Medical treatments, including chemotherapy, may sensitize the skin and alter facial features.",
       "In these moments, it is essential to feel supported with gentleness, respect, and professionalism.",
       "This module has been carefully designed to respond to the specific needs of medically sensitized skin within a confidential and benevolent framework."
     ],
@@ -127,7 +127,7 @@ export const modulesData: ModuleData[] = [
     framework: [
       "All products are rigorously selected for high tolerance and skin compatibility.",
       "Formulas are hypoallergenic, fragrance-free, dermatologically tested, and adapted to sensitized skin.",
-      "The objective is never transformation - but subtle revelation, respecting both the skin and the individual."
+      "The objective is never transformation, but subtle revelation, respecting both the skin and the individual."
     ],
 
     ethos: [
@@ -148,7 +148,7 @@ export const modulesData: ModuleData[] = [
     positioning: [
       "Makeup is a powerful tool for self-expression and identity affirmation.",
       "This module provides a safe, respectful, and affirming space where each person can explore and refine an image aligned with who they truly are.",
-      "The objective is not transformation into someone else - but affirmation of the person you already are."
+      "The objective is not transformation into someone else, but affirmation of the person you already are."
     ],
 
     approach: [

@@ -22,7 +22,7 @@ export default function HomePage() {
           </>
         }
         paragraphs={[
-          "A progressive academic journey structured across three distinct years - Foundations, Advanced Mastery, and Educator & Trainer.",
+          "A progressive academic journey structured across three distinct years: Foundations, Advanced Mastery, and Educator & Trainer.",
           "Each year functions as an independent diploma, allowing artists to begin, advance, or specialize according to their rhythm and professional goals.",
           "Built with precision and grounded in real industry experience, the program develops technical excellence, artistic identity, and long-term professional confidence."
         ]}
@@ -40,8 +40,8 @@ export default function HomePage() {
           </>
         }
         paragraphs={[
-          "M·ART was created to unite excellence with inclusivity - a space where discipline and creativity grow side by side.",
-          "Here, makeup is taught as a complete profession, guided by industry-active educators and rooted in the realities of the field - open to beginners, self-taught artists, and professionals in evolution."
+          "M·ART was created to unite excellence with inclusivity, a space where discipline and creativity grow side by side.",
+          "Here, makeup is taught as a complete profession, guided by industry-active educators and rooted in the realities of the field, open to beginners, self-taught artists, and professionals in evolution."
         ]}
         buttonLabel="→ Discover Our Academy"
         buttonHref="/the-academy"

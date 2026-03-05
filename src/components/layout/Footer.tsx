@@ -7,7 +7,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative w-full bg-[#050505] text-white">
+    <footer className="relative w-full bg-[#F6F4F1] text-[#23252B]">
 
       {/* ================= DESKTOP (RESTORED EXACTLY) ================= */}
       <div className="hidden lg:block relative w-[1282px] h-[329px] mx-auto">
