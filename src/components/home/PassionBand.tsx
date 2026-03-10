@@ -1,4 +1,8 @@
-export default function PassionBand() {
+interface PassionBandProps {
+  text: string;
+}
+
+export default function PassionBand({ text }: PassionBandProps) {
   return (
     <div
       className="
@@ -10,7 +14,7 @@ export default function PassionBand() {
         /* Tablet */
         md:h-[80px] md:py-0
 
-        /* Desktop (restore original exactly) */
+        /* Desktop */
         lg:h-[91px]
       "
     >
@@ -20,7 +24,7 @@ export default function PassionBand() {
           font-bold italic uppercase
 
           /* =========================
-             MOBILE (base)
+             MOBILE
           ========================= */
           text-[22px]
           tracking-[-0.28px]
@@ -39,7 +43,7 @@ export default function PassionBand() {
           md:px-[24px]
 
           /* =========================
-             DESKTOP (exact original)
+             DESKTOP
           ========================= */
           lg:text-[24px]
           lg:tracking-[-0.48px]
@@ -51,8 +55,7 @@ export default function PassionBand() {
           lg:ml-[196px]
         "
       >
-        PASSION, SHAPED INTO PROFESSION. <br />
-        INCLUSIVE. DEMANDING. EXCELLENT.
+        {text}
       </div>
     </div>
   );

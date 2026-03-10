@@ -7,21 +7,45 @@ import Button from "@/components/ui/Button";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Icon from "@/components/ui/Icon";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { Locale } from "@/i18n/config";
+import { Dictionary } from "@/i18n/types";
 
-export default function Navbar() {
+export default function Navbar({
+  locale,
+  dict,
+}: {
+  locale: Locale;
+  dict: Dictionary;
+}) {
+
+  const pathname = usePathname();
+  const router = useRouter();
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isTrainingsOpen, setIsTrainingsOpen] = useState(false);
-  const pathname = usePathname();
-  const isStudentsPage = pathname === "/students";
+
+  /* =========================================================
+     Detect students page (localized)
+  ========================================================= */
+
+  const isStudentsPage = pathname === `/${locale}/students`;
+
   const isCompact = isScrolled || isStudentsPage || isMenuOpen;
+
+  /* =========================================================
+     Close mobile menu on route change
+  ========================================================= */
+
   useEffect(() => {
     setIsMenuOpen(false);
   }, [pathname]);
-  /* =============================
-     Scroll Detection
-  ============================= */
+
+  /* =========================================================
+     Scroll detection
+  ========================================================= */
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -29,24 +53,40 @@ export default function Navbar() {
 
     handleScroll();
     window.addEventListener("scroll", handleScroll);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /* =============================
-     Scroll Lock (Mobile)
-  ============================= */
+  /* =========================================================
+     Scroll lock mobile
+  ========================================================= */
+
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
+
     return () => {
       document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
 
+  /* =========================================================
+     Language Switch
+  ========================================================= */
+
+  const switchLanguage = (newLocale: Locale) => {
+    const segments = pathname.split("/");
+    segments[1] = newLocale;
+    router.push(segments.join("/"));
+  };
+
+  const localized = (path: string) => `/${locale}${path}`;
+
   return (
     <>
       {/* =========================================================
-          DESKTOP NAV (xl and above)
+          DESKTOP NAV
       ========================================================= */}
+
       <header
         className={cn(
           "hidden xl:block fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",
@@ -63,16 +103,26 @@ export default function Navbar() {
         <div className="relative h-full w-full">
           <div className="absolute left-[22px] top-0 h-full flex items-center">
 
-            {/* FULL VERSION */}
+            {/* FULL LOGO */}
+
             <div
               className={cn(
                 "relative transition-opacity duration-400",
                 isCompact ? "opacity-0 pointer-events-none" : "opacity-100"
               )}
             >
-              <Link href="/" className="relative block w-[157px] h-[93px]">
+              <Link
+                href={`/${locale}`}
+                className="relative block w-[157px] h-[93px]"
+              >
                 <div className="absolute left-[23px] top-0 w-[96px] h-[58px] overflow-hidden">
-                  <Image src="/logo.png" alt="M-ART Logo" width={96} height={58} priority />
+                  <Image
+                    src="/logo.png"
+                    alt="M-ART Logo"
+                    width={96}
+                    height={58}
+                    priority
+                  />
                 </div>
 
                 <div className="absolute left-[36px] top-[58px] brand-logo-sm text-charcoal whitespace-nowrap">
@@ -85,14 +135,15 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* COMPACT VERSION */}
+            {/* COMPACT LOGO */}
+
             <div
               className={cn(
                 "absolute transition-opacity duration-400 flex flex-col justify-center",
                 isCompact ? "opacity-100" : "opacity-0 pointer-events-none"
               )}
             >
-              <Link href="/" className="flex flex-col leading-none">
+              <Link href={`/${locale}`} className="flex flex-col leading-none">
                 <span className="text-white font-[Didot] font-bold text-[28px] tracking-[3px] whitespace-nowrap">
                   M•ART
                 </span>
@@ -103,17 +154,28 @@ export default function Navbar() {
             </div>
 
             {/* NAV LINKS */}
+
             <div
               className={cn(
                 "ml-[55px] flex gap-[40px] whitespace-nowrap transition-all duration-500",
-                isCompact ? "items-center text-white mb-0" : "mt-[63px] mb-[20px]"
+                isCompact
+                  ? "items-center text-white mb-0"
+                  : "mt-[63px] mb-[20px]"
               )}
             >
-              <Link href="/the-academy" className={cn("ui-nav", isCompact ? "text-white" : "text-charcoal")}>
-                THE ACADEMY
+
+              <Link
+                href={localized("/the-academy")}
+                className={cn(
+                  "ui-nav",
+                  isCompact ? "text-white" : "text-charcoal"
+                )}
+              >
+                {dict.nav.academy}
               </Link>
 
               {/* TRAININGS DROPDOWN */}
+
               <div
                 className="relative"
                 onMouseEnter={() => setIsTrainingsOpen(true)}
@@ -125,7 +187,8 @@ export default function Navbar() {
                     isCompact ? "text-white" : "text-charcoal"
                   )}
                 >
-                  TRAININGS
+                  {dict.nav.trainings}
+
                   <motion.span
                     animate={{ rotate: isTrainingsOpen ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
@@ -151,12 +214,12 @@ export default function Navbar() {
                             : "bg-white text-charcoal"
                         )}
                       >
-                        <Link href="/programs" className="ui-nav">
-                          PROGRAMS
+                        <Link href={localized("/programs")} className="ui-nav">
+                          {dict.nav.programs}
                         </Link>
 
-                        <Link href="/modules" className="ui-nav">
-                          INDIVIDUAL MODULES
+                        <Link href={localized("/modules")} className="ui-nav">
+                          {dict.nav.modules}
                         </Link>
                       </div>
                     </motion.div>
@@ -164,195 +227,135 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
 
-              <Link href="/students" className={cn("ui-nav", isCompact ? "text-white" : "text-charcoal")}>
-                STUDENTS
+              <Link
+                href={localized("/students")}
+                className={cn(
+                  "ui-nav",
+                  isCompact ? "text-white" : "text-charcoal"
+                )}
+              >
+                {dict.nav.students}
               </Link>
 
               {!isCompact && (
-                <Link href="/contact" className="ui-nav text-charcoal">
-                  CONTACT
+                <Link
+                  href={localized("/contact")}
+                  className="ui-nav text-charcoal"
+                >
+                  {dict.nav.contact}
                 </Link>
               )}
 
               {isCompact && (
                 <Button
-                  href="/contact"
+                  href={localized("/contact")}
                   variant="outline"
                   tone="light"
                   size="sm"
                   className="w-[73px]"
                 >
-                  Contact
+                  {dict.nav.contact}
                 </Button>
               )}
             </div>
           </div>
 
-          {/* RIGHT SIDE — UNTOUCHED */}
+          {/* RIGHT SIDE */}
+
           {!isCompact && (
             <div className="absolute right-[22px] top-0 h-[108px] flex flex-col items-end">
               <div className="mt-[11px] flex items-center gap-[24px] whitespace-nowrap">
 
-                <Link href="/partnerships" className="text-[14px] tracking-[-0.7px] text-charcoal">
-                  Partnerships
+                <Link
+                  href={localized("/partnerships")}
+                  className="text-[14px] tracking-[-0.7px] text-charcoal"
+                >
+                  {dict.footer.partnerships}
                 </Link>
 
-                <div className="text-[11px] font-extrabold tracking-[-0.55px]">
-                  <span className="text-charcoal">FR / </span>
-                  <span className="text-coral">EN</span>
+                {/* LANGUAGE SWITCHER */}
+                <div className="text-[11px] font-extrabold tracking-[-0.55px] flex gap-[10px]">
+
+                  {(["fr", "en", "es", "pt"] as Locale[]).map((lng) => {
+
+                    const isActive = locale === lng;
+
+                    return (
+                      <button
+                        key={lng}
+                        onClick={() => switchLanguage(lng)}
+                        className={cn(
+                          "uppercase transition-colors cursor-pointer",
+
+                          isActive
+                            ? "text-[var(--color-muted-coral)]"
+                            : "text-charcoal hover:text-[var(--color-muted-coral)]"
+                        )}
+                      >
+                        {lng.toUpperCase()}
+                      </button>
+                    );
+
+                  })}
+
                 </div>
               </div>
 
               <div className="mt-[14px] flex gap-[4px]">
-                <Button href="/brochure" variant="solid" tone="dark" size="sm" icon="download" className="w-[204px]">
-                  DOWNLOAD A BROCHURE
+
+                <Button
+                  href={localized("/brochure")}
+                  variant="solid"
+                  tone="dark"
+                  size="sm"
+                  icon="download"
+                  className="w-[204px]"
+                >
+                  {dict.cta.downloadBrochure}
                 </Button>
 
-                <Button href="/contact?intent=meeting" variant="outline" tone="dark" size="sm" icon="arrowRight">
-                  Request an Information Meeting
+                <Button
+                  href={localized("/contact?intent=meeting")}
+                  variant="outline"
+                  tone="dark"
+                  size="sm"
+                  icon="arrowRight"
+                >
+                  {dict.cta.requestMeeting}
                 </Button>
+
               </div>
             </div>
           )}
 
           {isCompact && (
             <div className="absolute right-[22px] top-0 h-full flex items-center gap-[4px]">
-              <Button href="/brochure" variant="solid" tone="light" size="sm" icon="download" className="w-[204px]">
-                DOWNLOAD A BROCHURE
+
+              <Button
+                href={localized("/brochure")}
+                variant="solid"
+                tone="light"
+                size="sm"
+                icon="download"
+                className="w-[204px]"
+              >
+                {dict.cta.downloadBrochure}
               </Button>
 
-              <Button href="/contact?intent=meeting" variant="outline" tone="light" size="sm" icon="arrowRight">
-                Request an Information Meeting
+              <Button
+                href={localized("/contact?intent=meeting")}
+                variant="outline"
+                tone="light"
+                size="sm"
+                icon="arrowRight"
+              >
+                {dict.cta.requestMeeting}
               </Button>
+
             </div>
           )}
         </div>
       </header>
-
-      {/* =========================================================
-          MOBILE + TABLET NAV
-      ========================================================= */}
-      <header
-  className={cn(
-    "xl:hidden fixed top-0 left-0 w-full z-50 transition-all duration-500",
-    isCompact ? "h-[72px] bg-black" : "h-[108px] bg-white"
-  )}
->
-  <div className="container h-full flex items-center justify-between relative">
-
-    {/* Logo system unchanged — now clickable */}
-    <div className="relative flex-1 h-full">
-
-      <Link href="/" className="absolute inset-0 z-10" onClick={() => setIsMenuOpen(false)} />
-
-      <div
-        className={cn(
-          "absolute top-1/2 left-[80px] -translate-y-1/2 transition-all duration-500",
-          isCompact ? "opacity-0 pointer-events-none" : "opacity-100 -translate-x-[60%]"
-        )}
-      >
-        <div className="flex flex-col items-center leading-none gap-[3px]">
-          <Image src="/logo_v2.png" alt="M-ART Logo" width={60} height={36} priority />
-          <span className="brand-logo-sm text-charcoal leading-none">M•ART</span>
-          <span className="text-[9px] tracking-[1.53px] uppercase text-charcoal leading-none whitespace-nowrap">
-            GENEVA MAKEUP ACADEMY
-          </span>
-        </div>
-      </div>
-
-      <div
-        className={cn(
-          "absolute inset-y-0 left-[-20px] flex flex-col justify-center transition-all duration-500 pl-[var(--space-6)] leading-none",
-          isCompact ? "opacity-100" : "opacity-0 pointer-events-none"
-        )}
-      >
-        <span className="font-[Didot] font-bold text-[22px] tracking-[3px] text-white leading-none">
-          M•ART
-        </span>
-        <span className="text-[9px] tracking-[1.53px] uppercase text-white mt-[3px] leading-none">
-          GENEVA MAKEUP ACADEMY
-        </span>
-      </div>
-    </div>
-
-    <div className="flex items-center gap-4">
-      <Button href="/contact" variant="outline" tone={isCompact ? "light" : "dark"} size="sm">
-        Contact
-      </Button>
-
-      <button
-        onClick={() => setIsMenuOpen(!isMenuOpen)}    
-        className={cn("ui-nav tracking-[2px]", isCompact ? "text-white" : "text-charcoal")}
-      >
-        {isMenuOpen ? "CLOSE" : "MENU"}
-      </button>
-    </div>
-  </div>
-</header>
-
-  {/* =========================================================
-      MOBILE OVERLAY
-  ========================================================= */}
-  {/* =========================================================
-    MOBILE OVERLAY
-========================================================= */}
-<div
-  className={cn(
-    "xl:hidden fixed inset-0 z-40 bg-[var(--color-deep-charcoal)] text-white transition-all duration-500",
-    isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-  )}
->
-  <div className="h-full overflow-y-auto px-[var(--space-6)]">
-
-    <div className="min-h-full flex flex-col justify-center py-[var(--space-16)]">
-
-      <nav className="flex flex-col gap-[var(--space-8)] text-[28px] font-bold tracking-[-0.5px] uppercase">
-
-        <Link href="/" onClick={() => setIsMenuOpen(false)}>HOME</Link>
-        <Link href="/the-academy" onClick={() => setIsMenuOpen(false)}>THE ACADEMY</Link>
-        <Link href="/programs" onClick={() => setIsMenuOpen(false)}>PROGRAMS</Link>
-        <Link href="/modules" onClick={() => setIsMenuOpen(false)}>INDIVIDUAL MODULES</Link>
-        <Link href="/students" onClick={() => setIsMenuOpen(false)}>STUDENTS</Link>
-        <Link href="/contact" onClick={() => setIsMenuOpen(false)}>CONTACT</Link>
-
-      </nav>
-
-      <div className="mt-[var(--space-12)] border-t border-white/10 pt-[var(--space-8)] flex flex-col gap-[var(--space-4)]">
-
-        <Button
-          href="/brochure"
-          variant="solid"
-          tone="light"
-          size="sm"
-          icon="download"
-          className="w-full"
-        >
-          DOWNLOAD A BROCHURE
-        </Button>
-
-        <Button
-          href="/contact?intent=meeting"
-          variant="outline"
-          tone="light"
-          size="sm"
-          icon="arrowRight"
-          className="w-full"
-        >
-          Request an Information Meeting
-        </Button>
-
-        <div className="pt-[var(--space-6)] text-[11px] font-semibold tracking-[1px] uppercase flex justify-between">
-          <span>FR / EN</span>
-          <Link href="/partnerships" onClick={() => setIsMenuOpen(false)}>
-            PARTNERSHIPS
-          </Link>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-</div>
     </>
   );
 }

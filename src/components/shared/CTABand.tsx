@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/components/ui/Button";
+import { usePathname } from "next/navigation";
 
 export interface CTAButton {
   text: string;
@@ -21,6 +22,12 @@ export default function CTABand({
   buttons = [],
   tone = "light",
 }: CTABandProps) {
+
+  const pathname = usePathname();
+
+  // Extract locale from URL (/fr/modules → fr)
+  const locale = pathname.split("/")[1] || "en";
+
   const isDark = tone === "dark";
 
   return (
@@ -33,13 +40,14 @@ export default function CTABand({
     >
       <div className="container flex flex-col md:flex-row md:items-center md:justify-between gap-6">
 
-        {/* ================= LEFT SIDE (HEADING ONLY) ================= */}
+        {/* ================= LEFT SIDE ================= */}
+
         <div className="text-center md:text-left">
           <h2
             className="
               font-bold italic uppercase
               text-[28px] md:text-[36px] lg:text-[42px]
-              tracking-[-0.72px]
+              tracking-[-0.72px] leading-[1.2]
             "
           >
             {heading}
@@ -47,10 +55,12 @@ export default function CTABand({
         </div>
 
         {/* ================= RIGHT SIDE ================= */}
+
         {(description || buttons.length > 0) && (
           <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-[520px]">
 
-            {/* Description ABOVE buttons */}
+            {/* Description */}
+
             {description && (
               <p
                 className={`
@@ -65,21 +75,30 @@ export default function CTABand({
             )}
 
             {/* Buttons */}
+
             {buttons.length > 0 && (
               <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
 
-                {buttons.map((btn, index) => (
-                  <Button
-                    key={index}
-                    href={btn.link}
-                    variant={btn.variant}
-                    tone={isDark ? "light" : "dark"}
-                    size="sm"
-                    className="w-full md:w-auto md:min-w-[200px] sm:h-[48px]"
-                  >
-                    {btn.text}
-                  </Button>
-                ))}
+                {buttons.map((btn, index) => {
+
+                  const localizedLink =
+                    btn.link.startsWith("/")
+                      ? `/${locale}${btn.link}`
+                      : btn.link;
+
+                  return (
+                    <Button
+                      key={index}
+                      href={localizedLink}
+                      variant={btn.variant}
+                      tone={isDark ? "light" : "dark"}
+                      size="sm"
+                      className="w-full md:w-auto md:min-w-[200px] sm:h-[48px]"
+                    >
+                      {btn.text}
+                    </Button>
+                  );
+                })}
 
               </div>
             )}

@@ -26,17 +26,17 @@ export const academyContent: AcademyContent = {
   hero: {
     backgroundImage: "/about_1.jpg",
     backgroundImageMobile: "/about_1_mobile.jpg",
-    headline: "THE MAKEUP SCHOOL THAT TURNS PASSION INTO PROFESSION.",
-    ctaText: "→ Explore our Programs",
+    headline: "L'ÉCOLE DE MAQUILLAGE QUI TRANSFORME LA PASSION EN CARRIÈRE.",
+    ctaText: "→ Découvrez nos programmes",
     ctaLink: "/programs",
   },
 
   ctaBand1: {
-    heading: "DISCOVER THE PROFESSION",
+    heading: "DÉCOUVREZ LE MÉTIER",
     buttons: [
-      { text: "→ Learn More", variant: "outline", link: "/programs" },
+      { text: "→ En savoir plus", variant: "outline", link: "/programs" },
       {
-        text: "→ Schedule an Information Meeting",
+        text: "→ Planifiez un entretien d'information",
         variant: "solid",
         link: "/contact?intent=meeting",
       },
@@ -45,11 +45,11 @@ export const academyContent: AcademyContent = {
 
   sections: [
     {
-      heading: "AN ACADEMY ROOTED IN REALITY.",
+      heading: "UNE ACADÉMIE ANCRÉE DANS LA RÉALITÉ.",
       bodyParagraphs: [
-        "M·ART was created from a clear conviction: talent alone is not enough. To build a sustainable career in makeup, you need structure, preparation, and real-world understanding.",
-        "Founded by an industry-active professional with over 20 years of experience in spectacle, luxury cosmetics, and festival environments, the academy bridges the gap between creative passion and professional readiness.",
-        "Here, training is transparent, demanding, and anchored in the realities of the industry, not passing trends.",
+        "M·ART est née d'une conviction claire : le talent seul ne suffit pas. Pour bâtir une carrière durable dans le maquillage, il faut une structure, une préparation et une compréhension approfondie des réalités du métier.",
+        "Fondée par un·e professionnel·le actif·ve avec plus de 20 ans d'expérience dans le spectacle, la cosmétique de luxe et les festivals, l'académie établit un lien solide entre passion créative et préparation professionnelle.",
+        "Ici, la formation est transparente, exigeante et ancrée dans les réalités du métier, loin des tendances éphémères.",
       ],
       image: "/about_2.jpg",
       imagePosition: "right",
@@ -57,12 +57,12 @@ export const academyContent: AcademyContent = {
       textColor: "white",
     },
     {
-      heading: "WE TEACH A PROFESSION - NOT JUST TECHNIQUE.",
+      heading: "NOUS ENSEIGNONS UN MÉTIER - PAS SEULEMENT UNE TECHNIQUE.",
       bodyParagraphs: [
-        "At M·ART, makeup is approached in all its dimensions: beauty, artistic transformation, event and festival environments, editorial, theatre, cinema, and luxury cosmetics.",
-        "Students develop strong technical foundations in beauty, mature skin, and corrective work, while also exploring artistic creation, FX, and transformation.",
-        "But learning goes further than technique. We prepare students for real professional environments: client simulations, event scenarios, independence management, teamwork, and industry expectations.",
-        "Our mission is to help each student build not only skill, but identity, vision, and a deep understanding of the profession as a whole.",
+        "Chez M·ART, le maquillage est exploré dans toutes ses dimensions : beauté, transformation artistique, événements, festivals, éditorial, théâtre, cinéma et cosmétique de luxe.",
+        "Les étudiant·e·s acquièrent des bases techniques solides en beauté, peaux matures et maquillage correctif, tout en explorant la création artistique, les effets spéciaux et les transformations.",
+        "Mais l'apprentissage va au-delà de la technique. Nous préparons nos étudiant·e·s à des environnements professionnels réels : simulations avec client·e·s, scénarios événementiels, gestion de l'autonomie, travail en équipe et exigences du secteur.",
+        "Notre mission est d'aider chaque étudiant·e à construire non seulement des compétences, mais aussi une identité, une vision et une compréhension approfondie du métier dans son ensemble.",
       ],
       image: "/about_3.jpg",
       imagePosition: "left",
@@ -70,12 +70,12 @@ export const academyContent: AcademyContent = {
       textColor: "white",
     },
     {
-      heading: "OPEN TO ALL. COMMITTED TO EXCELLENCE.",
+      heading: "OUVERT·E·S À TOU·TE·S. ENGAGÉ·E·S POUR L'EXCELLENCE.",
       bodyParagraphs: [
-        "The academy welcomes beginners, self-taught artists, and professionals in transition. Whatever your starting point, you have your place here if you share the desire to learn, grow, and evolve.",
-        "We cultivate a serious, inclusive, and supportive environment where creativity is never restrained, but always guided with rigor.",
-        "Each student progresses at their own rhythm within a structured framework that balances high standards with individualized support.",
-        "What we build goes beyond technique. We develop confidence, creative identity, professional posture, and long-term direction.",
+        "L'académie accueille débutant·e·s, autodidactes et professionnel·le·s en reconversion. Peu importe votre point de départ, vous avez votre place ici si vous souhaitez apprendre, évoluer et progresser.",
+        "Nous cultivons un environnement sérieux, inclusif et bienveillant où la créativité est encouragée tout en étant guidée avec rigueur.",
+        "Chaque étudiant·e progresse à son propre rythme dans un cadre structuré, équilibrant exigences élevées et accompagnement personnalisé.",
+        "Notre objectif est de développer bien plus que la technique. Nous cultivons la confiance, l'identité créative, une posture professionnelle et une vision à long terme.",
       ],
       image: "/about_4.jpg",
       imageMobile: "/about_4_mobile.jpg",
@@ -88,25 +88,25 @@ export const academyContent: AcademyContent = {
   teachers: [
     {
       name: "FLORENT ALLEMANN",
-      title: "Founder & Creative Director",
+      title: "Fondateur·rice & Directeur·rice Créatif·ve",
       image: "/teacher_1.jpg",
       bio: [
-        "Independent makeup artist with over 20 years of experience in the world of spectacle, where makeup has always been part of his DNA.",
-        "His passion for education emerged during his time teaching in a makeup school, where he discovered a deep commitment to transmitting knowledge and unlocking each student’s creative potential.",
-        "Confronted with real-world industry challenges that could have been avoided with stronger preparation, he chose to build a different kind of academy: transparent, demanding, and grounded in professional reality.",
-        "With extensive experience in luxury cosmetics and festival environments, he has worked closely with brands, artists, and diverse audiences in high-pressure settings.",
-        "Excellence, elegance, inclusion, and personal development guide his vision of beauty and education. The academy reflects this philosophy: professional yet supportive, demanding yet deeply human.",
+        "Maquilleur·se indépendant·e avec plus de 20 ans d'expérience dans l'univers du spectacle, où le maquillage a toujours été une vocation.",
+        "Sa passion pour la transmission s'est révélée lors de son passage dans une école de maquillage, où iel a découvert un profond engagement pour partager ses connaissances et révéler le potentiel créatif de chaque étudiant·e.",
+        "Face aux défis réels du secteur, souvent dus à un manque de préparation, iel a décidé de créer une académie différente : transparente, exigeante et ancrée dans la réalité professionnelle.",
+        "Avec une expertise en cosmétique de luxe et en environnements événementiels, iel a collaboré avec des marques, artistes et publics variés dans des contextes très exigeants.",
+        "Son approche allie excellence, élégance, inclusion et épanouissement personnel, des valeurs qui définissent la philosophie de l'académie : professionnelle, bienveillante, exigeante et profondément humaine.",
       ],
     },
     {
       name: "CAMILLE LINDENBERGER",
-      title: "Co-Founder & Strategic Development",
+      title: "Co-Fondateur·rice & Développement Stratégique",
       image: "/teacher_2.jpg",
       bio: [
-        "Camille co-founded the academy with a clear ambition: to train artists who combine creative excellence with strategic intelligence.",
-        "With a background in management and development, she brings structure, rigor, and long-term vision to the beauty industry.",
-        "Her philosophy is simple: talent is essential, but mastery, posture, and entrepreneurial awareness create sustainability.",
-        "Through high standards and strategic guidance, she prepares artists to position themselves confidently within luxury environments and build meaningful, lasting careers.",
+        "Camille a co-fondé l'académie avec une vision claire : former des artistes qui allient excellence créative et intelligence stratégique.",
+        "Avec une formation en management et développement, iel apporte structure, rigueur et vision à long terme au secteur de la beauté.",
+        "Sa philosophie est simple : le talent est essentiel, mais la maîtrise, la posture et la conscience entrepreneuriale sont les clés de la pérennité.",
+        "Grâce à des exigences élevées et un accompagnement stratégique, iel prépare les artistes à s'imposer avec assurance dans des environnements de luxe et à construire des carrières significatives et durables.",
       ],
     },
   ],

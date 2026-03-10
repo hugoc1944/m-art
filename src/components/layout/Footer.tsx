@@ -2,14 +2,25 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Locale } from "@/i18n/config";
+import { Dictionary } from "@/i18n/types";
 
-export default function Footer() {
+export default function Footer({
+  locale,
+  dict,
+}: {
+  locale: Locale;
+  dict: Dictionary;
+}) {
+
   const year = new Date().getFullYear();
+
+  const localized = (path: string) => `/${locale}${path}`;
 
   return (
     <footer className="relative w-full bg-[#F6F4F1] text-[#23252B]">
 
-      {/* ================= DESKTOP (RESTORED EXACTLY) ================= */}
+      {/* ================= DESKTOP ================= */}
       <div className="hidden lg:block relative w-[1282px] h-[329px] mx-auto">
 
         {/* ================= LEFT COLUMN ================= */}
@@ -36,38 +47,47 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* SOCIAL HEADING */}
-          <div className="absolute left-[195px] top-[25px] w-[320px]">
+          {/* SOCIAL BLOCK */}
+          <div className="absolute left-[195px] top-[25px] w-[320px] flex flex-col">
+
             <h3 className="text-[36px] font-bold tracking-[-1.8px] leading-[1.07] uppercase">
-              FOLLOW M•ART <br />
-              ON SOCIAL MEDIA
+              {dict.footer.follow}
             </h3>
+
+            <div className="flex gap-[15px] mt-[18px]">
+              <Link href="#">
+                <Image src="/icons/ig.png" alt="" width={28} height={28} />
+              </Link>
+
+              <Link href="#">
+                <Image src="/icons/fb.png" alt="" width={28} height={28} />
+              </Link>
+
+              <Link href="#">
+                <Image src="/icons/yt.png" alt="" width={28} height={28} />
+              </Link>
+            </div>
+
           </div>
 
-          {/* SOCIAL ICONS */}
-          <div className="absolute left-[195px] top-[115px] flex gap-[15px]">
-            <Link href="#"><Image src="/icons/ig.png" alt="" width={28} height={28} /></Link>
-            <Link href="#"><Image src="/icons/fb.png" alt="" width={28} height={28} /></Link>
-            <Link href="#"><Image src="/icons/yt.png" alt="" width={28} height={28} /></Link>
-          </div>
         </div>
 
         {/* ================= RIGHT NAVIGATION ================= */}
-        <div className="absolute left-[620px] top-[73px] ">
+        <div className="absolute left-[620px] top-[73px]">
 
-          {/* COLUMN 1 — PROGRAMS */}
+          {/* COLUMN 1 — TRAININGS */}
           <div className="absolute left-0 w-[154px]">
             <h4 className="text-[16px] font-bold italic tracking-[-0.32px] uppercase">
-              Trainings
+              {dict.footer.trainings}
             </h4>
 
             <div className="mt-[8px] flex flex-col gap-[5px] text-[14px] tracking-[-0.28px]">
-              <Link href="/programs">Programs</Link>
-              <Link href="/modules">Individual Modules</Link>
+              <Link href={localized("/programs")}>{dict.footer.programs}</Link>
+              <Link href={localized("/modules")}>{dict.footer.individualModules}</Link>
             </div>
           </div>
 
-          {/* COLUMN 2 — M•ART ACADEMY */}
+          {/* COLUMN 2 — ACADEMY */}
           <div className="absolute left-[222px] w-[154px]">
             <h4 className="text-[16px] tracking-[-0.32px] uppercase">
               <span className="font-bold">M•ART </span>
@@ -75,32 +95,32 @@ export default function Footer() {
             </h4>
 
             <div className="mt-[8px] flex flex-col gap-[5px] text-[14px] tracking-[-0.28px]">
-              <Link href="/the-academy">Introduction</Link>
-              <Link href="/students">Students</Link>
-              <Link href="/contact?intent=meeting">Join the Academy</Link>
-              <Link href="/contact">Contact Us</Link>
+              <Link href={localized("/the-academy")}>{dict.footer.introduction}</Link>
+              <Link href={localized("/students")}>{dict.footer.students}</Link>
+              <Link href={localized("/contact?intent=meeting")}>{dict.footer.joinAcademy}</Link>
+              <Link href={localized("/contact")}>{dict.footer.contactUs}</Link>
             </div>
           </div>
 
           {/* COLUMN 3 — INFORMATION */}
           <div className="absolute left-[444px] w-[196px]">
             <h4 className="text-[16px] font-bold italic tracking-[-0.32px] uppercase">
-              Information
+              {dict.footer.information}
             </h4>
 
             <div className="mt-[8px] flex flex-col gap-[5px] text-[14px] tracking-[-0.28px]">
-              <Link href="/privacy-policy">Privacy Policy</Link>
-              <Link href="/legal-notices">Legal Notices</Link>
-              <Link href="/terms-and-conditions">Terms and Conditions</Link>
-              <Link href="/cookie-policy">Cookie Policy</Link>
-              <Link href="/cookie-settings">Cookie Settings</Link>
+              <Link href={localized("/privacy-policy")}>{dict.footer.privacy}</Link>
+              <Link href={localized("/legal-notices")}>{dict.footer.legal}</Link>
+              <Link href={localized("/terms-and-conditions")}>{dict.footer.terms}</Link>
+              <Link href={localized("/cookie-policy")}>{dict.footer.cookies}</Link>
+              <Link href={localized("/cookie-settings")}>{dict.footer.cookieSettings}</Link>
             </div>
           </div>
 
           {/* COLUMN 4 — ADDRESS */}
           <div className="absolute left-0 top-[90px] w-[154px]">
             <h4 className="text-[16px] font-bold italic tracking-[-0.32px] uppercase">
-              Address
+              {dict.footer.address}
             </h4>
 
             <p className="mt-[8px] text-[14px] italic tracking-[-0.28px] leading-[1.35]">
@@ -114,12 +134,12 @@ export default function Footer() {
 
         {/* COPYRIGHT */}
         <div className="absolute bottom-[20px] left-1/2 -translate-x-1/2 text-[14px] tracking-[-0.28px] text-center whitespace-nowrap">
-          © {year} M•ART GENEVA MAKEUP ACADEMY ALL RIGHTS RESERVED
+          © {year} M•ART GENEVA MAKEUP ACADEMY {dict.footer.copyright}
         </div>
 
       </div>
 
-      {/* ================= MOBILE + TABLET ================= */}
+      {/* ================= MOBILE ================= */}
       <div className="lg:hidden px-6 py-12">
 
         {/* LOGO */}
@@ -136,8 +156,9 @@ export default function Footer() {
         {/* SOCIAL */}
         <div className="mt-5 text-center">
           <h3 className="text-[22px] font-bold uppercase tracking-[-1px]">
-            FOLLOW M•ART ON SOCIAL MEDIA
+            {dict.footer.follow}
           </h3>
+
           <div className="mt-4 flex justify-center gap-6">
             <Link href="#"><Image src="/icons/ig.png" alt="" width={28} height={28} /></Link>
             <Link href="#"><Image src="/icons/fb.png" alt="" width={28} height={28} /></Link>
@@ -145,17 +166,18 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* NAVIGATION — 2 COLUMNS ON MOBILE */}
+        {/* NAVIGATION */}
         <div className="mt-12 grid grid-cols-2 gap-x-8 gap-y-10 text-left">
 
-          {/* PROGRAMS */}
+          {/* TRAININGS */}
           <div>
             <h4 className="text-[16px] font-bold italic uppercase mb-3">
-              Trainings
+              {dict.footer.trainings}
             </h4>
+
             <div className="flex flex-col gap-2 text-[14px]">
-              <Link href="/programs">Programs</Link>
-              <Link href="/modules">Individual Modules</Link>
+              <Link href={localized("/programs")}>{dict.footer.programs}</Link>
+              <Link href={localized("/modules")}>{dict.footer.individualModules}</Link>
             </div>
           </div>
 
@@ -164,33 +186,36 @@ export default function Footer() {
             <h4 className="text-[16px] font-bold uppercase mb-3">
               M•ART Academy
             </h4>
+
             <div className="flex flex-col gap-2 text-[14px]">
-              <Link href="/the-academy">Introduction</Link>
-              <Link href="/students">Students</Link>
-              <Link href="/contact?intent=meeting">Join the Academy</Link>
-              <Link href="/contact">Contact Us</Link>
+              <Link href={localized("/the-academy")}>{dict.footer.introduction}</Link>
+              <Link href={localized("/students")}>{dict.footer.students}</Link>
+              <Link href={localized("/contact?intent=meeting")}>{dict.footer.joinAcademy}</Link>
+              <Link href={localized("/contact")}>{dict.footer.contactUs}</Link>
             </div>
           </div>
 
           {/* INFORMATION */}
           <div>
             <h4 className="text-[16px] font-bold italic uppercase mb-3">
-              Information
+              {dict.footer.information}
             </h4>
+
             <div className="flex flex-col gap-2 text-[14px]">
-              <Link href="/privacy-policy">Privacy Policy</Link>
-              <Link href="/legal-notices">Legal Notices</Link>
-              <Link href="/terms-and-conditions">Terms and Conditions</Link>
-              <Link href="/cookie-policy">Cookie Policy</Link>
-              <Link href="/cookie-settings">Cookie Settings</Link>
+              <Link href={localized("/privacy-policy")}>{dict.footer.privacy}</Link>
+              <Link href={localized("/legal-notices")}>{dict.footer.legal}</Link>
+              <Link href={localized("/terms-and-conditions")}>{dict.footer.terms}</Link>
+              <Link href={localized("/cookie-policy")}>{dict.footer.cookies}</Link>
+              <Link href={localized("/cookie-settings")}>{dict.footer.cookieSettings}</Link>
             </div>
           </div>
 
           {/* ADDRESS */}
           <div>
             <h4 className="text-[16px] font-bold italic uppercase mb-3">
-              Address
+              {dict.footer.address}
             </h4>
+
             <p className="text-[14px] italic leading-[1.4]">
               Erlacherweg 33,<br />
               2503 Geneva<br />
@@ -202,7 +227,7 @@ export default function Footer() {
 
         {/* COPYRIGHT */}
         <div className="mt-16 text-center text-[13px] tracking-[-0.28px]">
-          © {year} M•ART GENEVA MAKEUP ACADEMY ALL RIGHTS RESERVED
+          © {year} M•ART GENEVA MAKEUP ACADEMY {dict.footer.copyright}
         </div>
 
       </div>

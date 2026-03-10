@@ -5,13 +5,27 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Button from "@/components/ui/Button";
 
+interface PortfolioSectionProps {
+  title: string;
+  description: string;
+  bullets: string[];
+  button: string;
+  buttonHref: string;
+}
+
 const images = [
   "/portfolio_1.jpg",
   "/portfolio_2.jpg",
   "/portfolio_3.jpg",
 ];
 
-export default function PortfolioSection() {
+export default function PortfolioSection({
+  title,
+  description,
+  bullets,
+  button,
+  buttonHref,
+}: PortfolioSectionProps) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -28,7 +42,6 @@ export default function PortfolioSection() {
       <div
         className="
           relative w-full h-[400px]
-
           lg:absolute lg:inset-0 lg:h-auto
         "
       >
@@ -87,11 +100,11 @@ export default function PortfolioSection() {
           "
         >
           <h3 className="text-[24px] font-bold italic uppercase tracking-[-0.48px] leading-[1.1]">
-            A PORTFOLIO THAT REFLECTS YOUR VISION
+            {title}
           </h3>
 
           <p className="mt-4 text-[14px] font-medium tracking-[-0.28px]">
-            Throughout the year, your work is photographed, refined, and positioned through professional shoots and real creative productions - building a body of work that reflects both your artistic identity and industry readiness.
+            {description}
           </p>
 
           <ul
@@ -110,20 +123,20 @@ export default function PortfolioSection() {
                 lg:ml-5
                 lg:text-left
             "
-            >
-            <li>Professional photo shoots</li>
-            <li>Real-world industry simulations</li>
-            <li>Artistic, editorial, and transformative projects</li>
-            </ul>
+          >
+            {bullets.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
 
           <div className="mt-6">
             <Button
-              href="/students"
+              href={buttonHref}
               variant="solid"
               tone="light"
               size="sm"
             >
-              → View Student Portfolios
+              {button}
             </Button>
           </div>
         </div>

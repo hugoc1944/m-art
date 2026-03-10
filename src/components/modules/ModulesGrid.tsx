@@ -3,14 +3,21 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ModuleCard from "@/components/modules/ModuleCard";
-import { modulesData } from "@/data/modulesData";
+import { ModuleData } from "@/data/modules/types";
 
-export default function ModulesGrid() {
+interface ModulesGridProps {
+  modules: ModuleData[];
+  locale: string;
+  cardLabel: string;
+}
+
+export default function ModulesGrid({
+  modules,
+  locale,
+  cardLabel,
+}: ModulesGridProps) {
   const [isBgDark, setIsBgDark] = useState(false);
 
-  /* =============================
-     Scroll Detection (Background)
-  ============================= */
   useEffect(() => {
     const handleScroll = () => {
       const section = document.getElementById("modules-grid");
@@ -24,6 +31,7 @@ export default function ModulesGrid() {
 
     handleScroll();
     window.addEventListener("scroll", handleScroll);
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -51,7 +59,7 @@ export default function ModulesGrid() {
             gap-[var(--space-8)]
           "
         >
-          {modulesData.map((module, index) => (
+          {modules.map((module, index) => (
             <motion.div
               key={module.slug}
               initial={{ opacity: 0, y: 30 }}
@@ -65,6 +73,8 @@ export default function ModulesGrid() {
             >
               <ModuleCard
                 module={module}
+                locale={locale}
+                label={cardLabel}
               />
             </motion.div>
           ))}

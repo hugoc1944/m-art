@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { Play, Volume2, VolumeX } from "lucide-react";
+import { VideoIntroCopy } from "@/data/ui/videoIntro";
 
 interface VideoIntroOverlayProps {
   onFinish: () => void;
@@ -11,6 +12,7 @@ interface VideoIntroOverlayProps {
   autoplay?: boolean;
   muted?: boolean;
   showControls?: boolean;
+  copy: VideoIntroCopy;
 }
 
 export default function VideoIntroOverlay({
@@ -20,6 +22,7 @@ export default function VideoIntroOverlay({
   autoplay = false,
   muted = true,
   showControls = true,
+  copy,
 }: VideoIntroOverlayProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -32,23 +35,21 @@ export default function VideoIntroOverlay({
      Video Controls
   ========================================================= */
 
-    const handlePlay = async () => {
+  const handlePlay = async () => {
     if (!videoRef.current) return;
 
     try {
-        const video = videoRef.current;
+      const video = videoRef.current;
 
-        // Set safe editorial volume (30%)
-        video.volume = 0.3;
+      video.volume = 0.3;
+      video.muted = false;
 
-        // Unmute when user actively plays
-        video.muted = false;
-        setIsMuted(false);
+      setIsMuted(false);
 
-        await video.play();
-        setIsPlaying(true);
+      await video.play();
+      setIsPlaying(true);
     } catch {}
-    };
+  };
 
   const handlePause = () => {
     videoRef.current?.pause();
@@ -57,6 +58,7 @@ export default function VideoIntroOverlay({
 
   const toggleSound = () => {
     if (!videoRef.current) return;
+
     const newMuted = !isMuted;
     videoRef.current.muted = newMuted;
     setIsMuted(newMuted);
@@ -81,7 +83,9 @@ export default function VideoIntroOverlay({
     };
 
     video.addEventListener("timeupdate", handleTimeUpdate);
-    return () => video.removeEventListener("timeupdate", handleTimeUpdate);
+
+    return () =>
+      video.removeEventListener("timeupdate", handleTimeUpdate);
   }, []);
 
   useEffect(() => {
@@ -96,6 +100,7 @@ export default function VideoIntroOverlay({
 
   const handleExit = () => {
     setIsExiting(true);
+
     setTimeout(() => {
       onFinish();
     }, 500);
@@ -126,23 +131,20 @@ export default function VideoIntroOverlay({
       opacity: 1,
       transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] },
     },
-    exit: {
-      opacity: 0,
-      transition: { duration: 0.4 },
-    },
+    exit: { opacity: 0, transition: { duration: 0.4 } },
   };
 
-    const fadeUp: Variants = {
+  const fadeUp: Variants = {
     initial: { opacity: 0, y: 20 },
     animate: {
-        opacity: 1,
-        y: 0,
-        transition: {
+      opacity: 1,
+      y: 0,
+      transition: {
         duration: 0.6,
         ease: [0.4, 0, 0.2, 1],
-        },
+      },
     },
-    };
+  };
 
   const pulse: Variants = {
     idle: {
@@ -169,7 +171,7 @@ export default function VideoIntroOverlay({
           exit="exit"
           className="fixed inset-0 z-[9999] bg-[#050505] overflow-hidden"
         >
-          {/* ================= VIDEO ================= */}
+          {/* VIDEO */}
 
           <motion.div
             initial={{ opacity: 0 }}
@@ -180,7 +182,8 @@ export default function VideoIntroOverlay({
               -translate-x-1/2 -translate-y-1/2
               w-[calc(100%-32px)] h-[calc(100%-32px)]
               md:w-[calc(100%-64px)] md:h-[calc(100%-64px)]
-               sm:w-[calc(100%-48px)] sm:h-[calc(100%-48px)]              border border-white/10
+              sm:w-[calc(100%-48px)] sm:h-[calc(100%-48px)]
+              border border-white/10
               overflow-hidden
             "
           >
@@ -196,7 +199,7 @@ export default function VideoIntroOverlay({
             />
           </motion.div>
 
-          {/* ================= PLAY BUTTON ================= */}
+          {/* PLAY BUTTON */}
 
           {!isPlaying && (
             <motion.button
@@ -207,7 +210,6 @@ export default function VideoIntroOverlay({
               onClick={handlePlay}
               className="
                 absolute top-1/2 left-1/2
-                cursor-pointer
                 -translate-x-1/2 -translate-y-1/2
                 w-[120px] h-[120px]
                 flex items-center justify-center
@@ -222,45 +224,42 @@ export default function VideoIntroOverlay({
             </motion.button>
           )}
 
-            {/* ================= TOP LEFT SMALL CTA ================= */}
+          {/* TOP LEFT CTA */}
 
-            <AnimatePresence>
+          <AnimatePresence>
             {!showFinalCTA && (
-                <motion.button
+              <motion.button
                 variants={fade}
                 initial="initial"
                 animate="animate"
                 exit="exit"
                 whileHover={{
-                    backgroundColor: "#ffffff",
-                    color: "#050505",
-                    y: -2,
-                    boxShadow: "0 4px 16px rgba(255,255,255,0.25)",
-                    transition: { duration: 0.2, ease: [0.4, 0, 0.2, 1] },
+                  backgroundColor: "#ffffff",
+                  color: "#050505",
+                  y: -2,
+                  boxShadow: "0 4px 16px rgba(255,255,255,0.25)",
                 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handleExit}
                 className="
-                    fixed top-[26px] left-[26px]
-                    md:top-[40px] md:left-[40px]
-                    sm:top-[20px] sm:left-[20px]
-                    px-6 py-3
-                    cursor-pointer
-                    border border-white
-                    text-white
-                    font-extrabold text-[13px]
-                    tracking-[-0.5px]
-                    backdrop-blur-md
-                    bg-white/10
-                    transition-colors duration-200
+                  fixed top-[26px] left-[26px]
+                  md:top-[40px] md:left-[40px]
+                  sm:top-[20px] sm:left-[20px]
+                  px-6 py-3
+                  border border-white
+                  text-white
+                  font-extrabold text-[13px]
+                  tracking-[-0.5px]
+                  backdrop-blur-md
+                  bg-white/10
                 "
-                
-                >
-                → Go to Home
-                </motion.button>
+              >
+                → {copy.goToHome}
+              </motion.button>
             )}
-</AnimatePresence>
-          {/* ================= SOUND BADGE ================= */}
+          </AnimatePresence>
+
+          {/* SOUND */}
 
           <motion.button
             variants={fade}
@@ -270,17 +269,16 @@ export default function VideoIntroOverlay({
               md:top-[40px] md:right-[40px]
               sm:top-[32px] sm:right-[32px]
               px-5 py-4
-              cursor-pointer
               rounded-full
               bg-white/10 backdrop-blur-md
               border border-white/20
-              text-white text-[13px]
+              text-white
             "
           >
             {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
           </motion.button>
 
-          {/* ================= BOTTOM CENTER TEXT ================= */}
+          {/* BRAND TEXT */}
 
           <motion.div
             variants={fadeUp}
@@ -288,25 +286,24 @@ export default function VideoIntroOverlay({
               fixed bottom-[60px] left-1/2
               -translate-x-1/2
               text-center text-white
-              md:bottom-[48px]
-              sm:bottom-[40px]
             "
           >
             <div
               className="font-[Didot] font-bold tracking-[3.84px]"
               style={{ fontSize: "32px" }}
             >
-              M•ART
+              {copy.brandLine}
             </div>
+
             <div
               className="font-inter tracking-[2.04px]"
               style={{ fontSize: "12px" }}
             >
-              GENEVA MAKEUP ACADEMY
+              {copy.academyLine}
             </div>
           </motion.div>
 
-          {/* ================= FINAL BOTTOM CENTER CTA ================= */}
+          {/* FINAL CTA */}
 
           <AnimatePresence>
             {showFinalCTA && (
@@ -333,7 +330,7 @@ export default function VideoIntroOverlay({
                   backdrop-blur-md bg-white/10
                 "
               >
-                → Go to Home
+                → {copy.goToHome}
               </motion.button>
             )}
           </AnimatePresence>

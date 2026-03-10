@@ -3,26 +3,43 @@
 import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import HomeIntroOverlay from "./HomeIntroOverlay";
 import VideoIntroOverlay from "@/components/intro/VideoIntroOverlay";
-import { usePathname } from "next/navigation";
+
+import { videoIntroCopy } from "@/data/ui/videoIntro";
+
+import { Locale } from "@/i18n/config";
+import { Dictionary } from "@/i18n/types";
 
 export default function RootLayoutShell({
   children,
+  locale,
+  dictionary,
 }: {
   children: ReactNode;
+  locale: Locale;
+  dictionary: Dictionary;
 }) {
+
   const pathname = usePathname();
-  const isHome = pathname === "/";
+
+  /* =========================================================
+     Detect localized homepage
+  ========================================================= */
+
+  const isHome =
+    pathname === `/${locale}` || pathname === `/${locale}/`;
 
   const [introFinished, setIntroFinished] = useState(!isHome);
   const [layoutVisible, setLayoutVisible] = useState(!isHome);
 
   /* =========================================================
-     If not home, skip intro immediately
+     Skip intro on non-home pages
   ========================================================= */
+
   useEffect(() => {
     if (!isHome) {
       setIntroFinished(true);
@@ -31,13 +48,14 @@ export default function RootLayoutShell({
   }, [isHome]);
 
   /* =========================================================
-     When intro finishes → trigger layout fade-in
+     Layout fade-in after intro
   ========================================================= */
+
   useEffect(() => {
     if (introFinished) {
       const timer = setTimeout(() => {
         setLayoutVisible(true);
-      }, 100); // small breathing delay after overlay exit
+      }, 100);
 
       return () => clearTimeout(timer);
     }
@@ -45,19 +63,27 @@ export default function RootLayoutShell({
 
   return (
     <>
-      {/* Intro Overlay (Home Only) */}
+      {/* =========================================
+          Intro Overlay (Home Only)
+      ========================================= */}
+
       {isHome && !introFinished && (
         <VideoIntroOverlay
           onFinish={() => setIntroFinished(true)}
           videoSrc="/video_entrance.mp4"
           posterSrc="/video_cover.png"
+          copy={videoIntroCopy[locale]}
         />
       )}
 
-      {/* Layout with fade-in */}
+      {/* =========================================
+          Layout
+      ========================================= */}
+
       {introFinished && (
         <div className="min-h-screen flex flex-col bg-editorialWhite text-charcoal">
-          <Navbar />
+
+          <Navbar locale={locale} dict={dictionary} />
 
           <motion.main
             initial={{ filter: "blur(8px)" }}
@@ -68,7 +94,8 @@ export default function RootLayoutShell({
             {children}
           </motion.main>
 
-          <Footer />
+          <Footer locale={locale} dict={dictionary} />
+
         </div>
       )}
     </>

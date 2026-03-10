@@ -1,60 +1,52 @@
-"use client";
+"use client"
 
-import Link from "next/link";
+import Link from "next/link"
+import { useParams } from "next/navigation"
+import { Locale } from "@/i18n/config"
 
 interface YearNavigatorProps {
-  currentYear: 1 | 2 | 3;
+  currentYear: 1 | 2 | 3
+  yearLabel: string
 }
 
 export default function YearNavigator({
   currentYear,
+  yearLabel,
 }: YearNavigatorProps) {
-  const prevYear = currentYear > 1 ? currentYear - 1 : null;
-  const nextYear = currentYear < 3 ? currentYear + 1 : null;
+
+  const params = useParams()
+  const locale = params.locale as Locale
+
+  const prevYear = currentYear > 1 ? currentYear - 1 : null
+  const nextYear = currentYear < 3 ? currentYear + 1 : null
 
   return (
-    <section className="bg-[#000000] h-[120px] md:h-[100px] sm:h-[80px] flex items-center">
-      <div className="container flex justify-between items-center text-white">
+    <section className="bg-black h-[120px] flex items-center">
 
-        {/* PREVIOUS */}
+      <div className="container flex justify-between text-white">
+
         <div>
-          {prevYear ? (
-            <Link
-              href={`/programs/professional-makeup-year-${prevYear}`}
-              className="flex items-center gap-4 hover:opacity-100 opacity-80 transition"
-            >
-              <span className="text-2xl">←</span>
-              <span className="ui-nav hidden sm:inline">
-                YEAR {prevYear}
-              </span>
+          {prevYear && (
+            <Link href={`/${locale}/programs/professional-makeup-year-${prevYear}`}>
+              ← {yearLabel} {prevYear}
             </Link>
-          ) : (
-            <div />
           )}
         </div>
 
-        {/* CURRENT */}
-        <div className="heading-sm text-[#ffffff]">
-          YEAR {currentYear}
+        <div className="heading-sm">
+          {yearLabel} {currentYear}
         </div>
 
-        {/* NEXT */}
         <div>
-          {nextYear ? (
-            <Link
-              href={`/programs/professional-makeup-year-${nextYear}`}
-              className="flex items-center gap-4 hover:opacity-100 opacity-80 transition"
-            >
-              <span className="ui-nav hidden sm:inline">
-                YEAR {nextYear}
-              </span>
-              <span className="text-2xl">→</span>
+          {nextYear && (
+            <Link href={`/${locale}/programs/professional-makeup-year-${nextYear}`}>
+              {yearLabel} {nextYear} →
             </Link>
-          ) : (
-            <div />
           )}
         </div>
+
       </div>
+
     </section>
-  );
+  )
 }

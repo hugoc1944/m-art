@@ -3,20 +3,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ModuleData } from "@/data/modulesData";
+import { ModuleData } from "@/data/modules/types";
 
 interface ModuleCardProps {
   module: ModuleData;
+  locale: string;
+  label: string;
 }
 
-export default function ModuleCard({ module }: ModuleCardProps) {
+export default function ModuleCard({
+  module,
+  locale,
+  label,
+}: ModuleCardProps) {
   return (
     <motion.div
       whileHover={{ y: -4 }}
       transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
       className="relative w-full h-[480px] md:h-[420px] sm:h-[360px] overflow-hidden group"
     >
-      <Link href={`/modules/${module.slug}`} className="absolute inset-0">
+      <Link
+        href={`/${locale}/modules/${module.slug}`}
+        className="absolute inset-0"
+      >
 
         {/* Background Image */}
         <div className="absolute inset-0">
@@ -48,7 +57,7 @@ export default function ModuleCard({ module }: ModuleCardProps) {
             </p>
 
             <span className="ui-button border-b border-white pb-[2px]">
-              → View Module
+              → {label}
             </span>
 
           </div>

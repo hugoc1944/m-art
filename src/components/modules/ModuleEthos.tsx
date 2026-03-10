@@ -1,14 +1,18 @@
 interface Props {
   paragraphs: string[];
+  title: string;
 }
 
-export default function ModuleEthos({ paragraphs }: Props) {
+export default function ModuleEthos({
+  paragraphs,
+  title,
+}: Props) {
   return (
     <section className="bg-white section-padding">
       <div className="container-narrow">
 
         <h3 className="heading-md uppercase mb-[var(--space-8)]">
-          A Safe & Confidential Environment
+          {title}
         </h3>
 
         <div className="body-standard space-y-[var(--space-6)]">

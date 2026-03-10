@@ -5,10 +5,16 @@ import Button from "@/components/ui/Button";
 
 interface ModulesHeroProps {
   backgroundImage: string;
+  title: string;
+  description: string;
+  buttonLabel: string;
 }
 
 export default function ModulesHero({
   backgroundImage,
+  title,
+  description,
+  buttonLabel,
 }: ModulesHeroProps) {
   return (
     <section className="relative w-full h-[70vh] md:h-[70vh] sm:h-[50vh] overflow-hidden">
@@ -17,7 +23,7 @@ export default function ModulesHero({
       <div className="absolute inset-0">
         <Image
           src={backgroundImage}
-          alt="Professional Makeup Modules"
+          alt={title}
           fill
           priority
           sizes="100vw"
@@ -32,27 +38,24 @@ export default function ModulesHero({
         <div className="max-w-[640px]">
 
           <h1 className="heading-xl text-white mb-[var(--space-6)]">
-            PROFESSIONAL MAKEUP MODULES
+            {title}
           </h1>
 
           <p className="body-intro text-white mb-[var(--space-8)]">
-            Specialized intensives designed to refine technique,
-            deepen artistic exploration, and support professional positioning.
+            {description}
           </p>
 
           <Button
             onClick={() => {
-                const el = document.getElementById("modules-grid");
-                if (el) {
-                el.scrollIntoView({ behavior: "auto" });
-                }
+              const el = document.getElementById("modules-grid");
+              if (el) el.scrollIntoView({ behavior: "auto" });
             }}
             variant="outline"
             tone="light"
             size="md"
-            >
-            → View Modules
-            </Button>
+          >
+            → {buttonLabel}
+          </Button>
 
         </div>
       </div>

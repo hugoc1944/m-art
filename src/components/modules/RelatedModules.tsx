@@ -3,14 +3,25 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import ModuleCard from "@/components/modules/ModuleCard";
-import { ModuleData } from "@/data/modulesData";
+import { ModuleData } from "@/data/modules/types";
 
 interface Props {
   currentSlug: string;
   modules: ModuleData[];
+  locale: string;
+  eyebrow: string;
+  title: string;
+  cardLabel: string;
 }
 
-export default function RelatedModules({ currentSlug, modules }: Props) {
+export default function RelatedModules({
+  currentSlug,
+  modules,
+  locale,
+  eyebrow,
+  title,
+  cardLabel,
+}: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const otherModules = modules.filter(
@@ -21,6 +32,7 @@ export default function RelatedModules({ currentSlug, modules }: Props) {
     if (!containerRef.current) return;
 
     const width = containerRef.current.offsetWidth;
+
     containerRef.current.scrollBy({
       left: direction === "left" ? -width * 0.8 : width * 0.8,
       behavior: "smooth",
@@ -34,21 +46,23 @@ export default function RelatedModules({ currentSlug, modules }: Props) {
 
         {/* HEADER */}
         <div className="mb-[var(--space-12)]">
+
           <div className="label-eyebrow mb-[var(--space-4)]">
-            CONTINUE YOUR DEVELOPMENT
+            {eyebrow}
           </div>
 
           <h2 className="heading-lg uppercase">
-            Further Specialization
+            {title}
           </h2>
 
           <div className="mt-[var(--space-6)] h-px bg-black/10" />
+
         </div>
 
-        {/* SLIDER WRAPPER */}
+        {/* SLIDER */}
         <div className="relative">
 
-          {/* NAV BUTTONS (desktop only) */}
+          {/* NAV BUTTONS */}
           <div className="hidden lg:flex absolute -left-6 top-1/2 -translate-y-1/2 z-10">
             <button
               onClick={() => scroll("left")}
@@ -70,7 +84,8 @@ export default function RelatedModules({ currentSlug, modules }: Props) {
           {/* SCROLL CONTAINER */}
           <motion.div
             ref={containerRef}
-            className="flex gap-[var(--space-8)] overflow-x-auto scroll-smooth no-scrollbar pb-2 cursor-grab active:cursor-grabbing"            initial={{ opacity: 0 }}
+            className="flex gap-[var(--space-8)] overflow-x-auto scroll-smooth no-scrollbar pb-2 cursor-grab active:cursor-grabbing"
+            initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
@@ -80,7 +95,11 @@ export default function RelatedModules({ currentSlug, modules }: Props) {
                 key={module.slug}
                 className="min-w-[320px] max-w-[360px] flex-shrink-0"
               >
-                <ModuleCard module={module} />
+                <ModuleCard
+                  module={module}
+                  locale={locale}
+                  label={cardLabel}
+                />
               </div>
             ))}
           </motion.div>

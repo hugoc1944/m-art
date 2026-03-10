@@ -4,14 +4,15 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
-function RotatingStatements() {
-  const statements = [
-    "Technical Mastery",
-    "Creative Identity",
-    "Professional Immersion",
-    "Portfolio That Opens Doors",
-  ];
+interface SectionSloganProps {
+  slogan: {
+    top: string
+    rotating: string[]
+    bottom: string[]
+  }
+}
 
+function RotatingStatements({ statements }: { statements: string[] }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ function RotatingStatements() {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [statements.length]);
 
   return (
     <div className="relative w-full flex justify-center">
@@ -48,13 +49,12 @@ function RotatingStatements() {
   );
 }
 
-
-export default function SectionSlogan() {
+export default function SectionSlogan({ slogan }: SectionSloganProps) {
   return (
     <section>
 
       {/* =========================
-          TOP BAND (DESKTOP UNCHANGED)
+          TOP BAND
       ========================= */}
       <div
         className="
@@ -80,8 +80,7 @@ export default function SectionSlogan() {
             sm:leading-[1.2]
           "
         >
-          Shaping excellence, revealing signatures, <br className="hidden sm:block" />
-          preparing the future.
+          {slogan.top}
         </div>
       </div>
 
@@ -89,7 +88,6 @@ export default function SectionSlogan() {
           IMAGE GRID
       ========================= */}
 
-      {/* Desktop (UNCHANGED) */}
       <div className="hidden lg:grid grid-cols-4 h-[657px]">
         {[1, 2, 3, 4].map((i) => (
           <div key={i} className="relative">
@@ -104,7 +102,6 @@ export default function SectionSlogan() {
         ))}
       </div>
 
-      {/* Tablet (2x2 grid) */}
       <div className="hidden sm:grid lg:hidden grid-cols-2 grid-rows-2">
         {[1, 2, 3, 4].map((i) => (
           <div key={i} className="relative h-[400px]">
@@ -119,7 +116,6 @@ export default function SectionSlogan() {
         ))}
       </div>
 
-      {/* Mobile (Stacked) */}
       <div className="sm:hidden flex flex-col">
         {[1, 2, 3, 4].map((i) => (
           <div key={i} className="relative h-[280px]">
@@ -138,14 +134,8 @@ export default function SectionSlogan() {
           BOTTOM LABELS
       ========================= */}
 
-      {/* Desktop (UNCHANGED) */}
       <div className="hidden lg:grid h-[110px] bg-[#f7f6f3] grid-cols-4 items-center text-center">
-        {[
-          <>Technical Mastery</>,
-          <>Creative Identity</>,
-          <>Professional <br /> Immersion</>,
-          <>Portfolio That <br /> Opens Doors</>,
-        ].map((label, index) => (
+        {slogan.bottom.map((label, index) => (
           <div
             key={index}
             className="text-[#23252b] text-[24px] font-bold italic uppercase tracking-[-0.48px] leading-[0.9]"
@@ -155,14 +145,8 @@ export default function SectionSlogan() {
         ))}
       </div>
 
-      {/* Tablet (2x2 matching grid) */}
       <div className="hidden sm:grid lg:hidden bg-[#f7f6f3] grid-cols-2 grid-rows-2 h-[90px] py-2">
-        {[
-          "Technical Mastery",
-          "Creative Identity",
-          "Professional Immersion",
-          "Portfolio That Opens Doors",
-        ].map((label, index) => (
+        {slogan.bottom.map((label, index) => (
           <div
             key={index}
             className="
@@ -180,13 +164,12 @@ export default function SectionSlogan() {
         ))}
       </div>
 
-    {/* =========================
-            MOBILE — EDITORIAL ROTATING STATEMENT
-        ========================= */}
-       <div className="sm:hidden bg-[#f7f6f3] h-[100px] flex items-center justify-center overflow-hidden">
-        <RotatingStatements />
-       </div>
-      
+      {/* =========================
+          MOBILE ROTATING
+      ========================= */}
+      <div className="sm:hidden bg-[#f7f6f3] h-[100px] flex items-center justify-center overflow-hidden">
+        <RotatingStatements statements={slogan.rotating} />
+      </div>
 
     </section>
   );
