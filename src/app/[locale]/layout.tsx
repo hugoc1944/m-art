@@ -9,19 +9,19 @@ export default async function LocaleLayout({
   params,
 }: {
   children: ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }) {
 
   const { locale } = await params;
 
-  if (!locales.includes(locale)) {
+  if (!locales.includes(locale as Locale)) {
     notFound();
   }
 
-  const dictionary = await getDictionary(locale);
+  const dictionary = await getDictionary(locale as Locale);
 
   return (
-    <RootLayoutShell locale={locale} dictionary={dictionary}>
+    <RootLayoutShell locale={locale as Locale} dictionary={dictionary}>
       {children}
     </RootLayoutShell>
   );
