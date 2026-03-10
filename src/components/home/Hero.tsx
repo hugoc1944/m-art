@@ -60,7 +60,7 @@ export default function Hero({ headline, subheadline }: HeroProps) {
             <div className="mt-2 text-white brand-logo-lg">M•ART</div>
           </div>
 
-          <div className="ml-[10px] max-w-[980px]">
+          <div className="ml-[10px] max-w-[1100px]">
             <h1 className="text-white heading-display text-[78px] leading-[1.05]">
               {headline}
             </h1>
