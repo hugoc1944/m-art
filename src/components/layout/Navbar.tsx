@@ -356,6 +356,171 @@ export default function Navbar({
           )}
         </div>
       </header>
+
+      {/* =========================================================
+    MOBILE + TABLET NAV
+========================================================= */}
+
+<header
+  className={cn(
+    "xl:hidden fixed top-0 left-0 w-full z-50 transition-all duration-500",
+    isCompact ? "h-[72px] bg-black" : "h-[108px] bg-white"
+  )}
+>
+  <div className="container h-full flex items-center justify-between relative">
+
+    {/* Logo */}
+
+    <Link
+      href={`/${locale}`}
+      className="flex items-center gap-2"
+      onClick={() => setIsMenuOpen(false)}
+    >
+      <Image
+        src="/logo_v2.png"
+        alt="M-ART Logo"
+        width={48}
+        height={32}
+        priority
+      />
+
+      <span
+        className={cn(
+          "brand-logo-sm",
+          isCompact ? "text-white" : "text-charcoal"
+        )}
+      >
+        M•ART
+      </span>
+    </Link>
+
+    {/* Right Side */}
+
+    <div className="flex items-center gap-4">
+
+      <Button
+        href={localized("/contact")}
+        variant="outline"
+        tone={isCompact ? "light" : "dark"}
+        size="sm"
+      >
+        {dict.nav.contact}
+      </Button>
+
+      <button
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        className={cn(
+          "ui-nav tracking-[2px]",
+          isCompact ? "text-white" : "text-charcoal"
+        )}
+      >
+        {isMenuOpen ? "CLOSE" : "MENU"}
+      </button>
+
+    </div>
+
+  </div>
+</header>
+
+{/* =========================================================
+    MOBILE MENU OVERLAY
+========================================================= */}
+
+<div
+  className={cn(
+    "xl:hidden fixed inset-0 z-40 bg-[var(--color-deep-charcoal)] text-white transition-all duration-500",
+    isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+  )}
+>
+  <div className="h-full overflow-y-auto px-[var(--space-6)]">
+
+    <div className="min-h-full flex flex-col justify-center py-[var(--space-16)]">
+
+      <nav className="flex flex-col gap-[var(--space-8)] text-[28px] font-bold tracking-[-0.5px] uppercase">
+
+        <Link href={`/${locale}`} onClick={() => setIsMenuOpen(false)}>
+          HOME
+        </Link>
+
+        <Link href={localized("/the-academy")} onClick={() => setIsMenuOpen(false)}>
+          {dict.nav.academy}
+        </Link>
+
+        <Link href={localized("/programs")} onClick={() => setIsMenuOpen(false)}>
+          {dict.nav.programs}
+        </Link>
+
+        <Link href={localized("/modules")} onClick={() => setIsMenuOpen(false)}>
+          {dict.nav.modules}
+        </Link>
+
+        <Link href={localized("/students")} onClick={() => setIsMenuOpen(false)}>
+          {dict.nav.students}
+        </Link>
+
+        <Link href={localized("/contact")} onClick={() => setIsMenuOpen(false)}>
+          {dict.nav.contact}
+        </Link>
+
+      </nav>
+
+      <div className="mt-[var(--space-12)] border-t border-white/10 pt-[var(--space-8)] flex flex-col gap-[var(--space-6)]">
+
+  <Button
+    href={localized("/brochure")}
+    variant="solid"
+    tone="light"
+    size="sm"
+    icon="download"
+    className="w-full"
+  >
+    {dict.cta.downloadBrochure}
+  </Button>
+
+  <Button
+    href={localized("/contact?intent=meeting")}
+    variant="outline"
+    tone="light"
+    size="sm"
+    icon="arrowRight"
+    className="w-full"
+  >
+    {dict.cta.requestMeeting}
+  </Button>
+
+  {/* LANGUAGE SWITCHER */}
+
+  <div className="pt-[var(--space-6)] border-t border-white/10 flex justify-center gap-[14px] text-[12px] font-extrabold tracking-[1px] uppercase">
+
+    {(["fr", "en", "es", "pt"] as Locale[]).map((lng) => {
+
+      const isActive = locale === lng;
+
+      return (
+        <button
+          key={lng}
+          onClick={() => switchLanguage(lng)}
+          className={cn(
+            "transition-colors",
+
+            isActive
+              ? "text-[var(--color-muted-coral)]"
+              : "text-white hover:text-[var(--color-muted-coral)]"
+          )}
+        >
+          {lng.toUpperCase()}
+        </button>
+      );
+
+    })}
+
+  </div>
+
+</div>
+
+    </div>
+  </div>
+</div>
     </>
   );
 }
