@@ -357,70 +357,75 @@ export default function Navbar({
         </div>
       </header>
 
-      {/* =========================================================
-    MOBILE + TABLET NAV
-========================================================= */}
+    {/* =========================================================
+        MOBILE + TABLET NAV
+    ========================================================= */}
 
-<header
-  className={cn(
-    "xl:hidden fixed top-0 left-0 w-full z-50 transition-all duration-500",
-    isCompact ? "h-[72px] bg-black" : "h-[108px] bg-white"
-  )}
->
-  <div className="container h-full flex items-center justify-between relative">
-
-    {/* Logo */}
-
-    <Link
-      href={`/${locale}`}
-      className="flex items-center gap-2"
-      onClick={() => setIsMenuOpen(false)}
+    <header
+      className={cn(
+        "xl:hidden fixed top-0 left-0 w-full z-50 transition-all duration-500",
+        isCompact ? "h-[72px] bg-black" : "h-[108px] bg-white"
+      )}
     >
-      <Image
-        src="/logo_v2.png"
-        alt="M-ART Logo"
-        width={48}
-        height={32}
-        priority
-      />
+      <div className="container h-full flex items-center justify-between relative">
 
-      <span
-        className={cn(
-          "brand-logo-sm",
-          isCompact ? "text-white" : "text-charcoal"
-        )}
-      >
-        M•ART
-      </span>
-    </Link>
+        {/* Logo */}
 
-    {/* Right Side */}
+        <Link
+          href={`/${locale}`}
+          className="flex items-center gap-2"
+          onClick={() => setIsMenuOpen(false)}
+        >
 
-    <div className="flex items-center gap-4">
+          {/* Icon disappears in compact mode */}
+          {!isCompact && (
+            <Image
+              src="/logo_v2.png"
+              alt="M-ART Logo"
+              width={48}
+              height={32}
+              priority
+            />
+          )}
 
-      <Button
-        href={localized("/contact")}
-        variant="outline"
-        tone={isCompact ? "light" : "dark"}
-        size="sm"
-      >
-        {dict.nav.contact}
-      </Button>
+          <span
+            className={cn(
+              "brand-logo-sm",
+              isCompact ? "text-white" : "text-charcoal"
+            )}
+          >
+            M•ART
+          </span>
 
-      <button
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        className={cn(
-          "ui-nav tracking-[2px]",
-          isCompact ? "text-white" : "text-charcoal"
-        )}
-      >
-        {isMenuOpen ? "CLOSE" : "MENU"}
-      </button>
+        </Link>
 
-    </div>
+        {/* Right Side */}
 
-  </div>
-</header>
+        <div className="flex items-center gap-4">
+
+          <Button
+            href={localized("/contact")}
+            variant="outline"
+            tone={isCompact ? "light" : "dark"}
+            size="sm"
+          >
+            {dict.nav.contact}
+          </Button>
+
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className={cn(
+              "ui-nav tracking-[2px]",
+              isCompact ? "text-white" : "text-charcoal"
+            )}
+          >
+            {isMenuOpen ? "CLOSE" : "MENU"}
+          </button>
+
+        </div>
+
+      </div>
+    </header>
 
 {/* =========================================================
     MOBILE MENU OVERLAY
