@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
@@ -23,15 +23,21 @@ export default function RootLayoutShell({
   locale: Locale;
   dictionary: Dictionary;
 }) {
-
   const pathname = usePathname();
 
   /* =========================================================
      Detect localized homepage
   ========================================================= */
 
-  const isHome =
-    pathname === `/${locale}` || pathname === `/${locale}/`;
+  const isHome = useMemo(() => {
+    if (!pathname) return false;
+
+    const normalized = pathname.endsWith("/")
+      ? pathname.slice(0, -1)
+      : pathname;
+
+    return normalized === `/${locale}`;
+  }, [pathname, locale]);
 
   const [introFinished, setIntroFinished] = useState(!isHome);
   const [layoutVisible, setLayoutVisible] = useState(!isHome);
@@ -82,7 +88,6 @@ export default function RootLayoutShell({
 
       {introFinished && (
         <div className="min-h-screen flex flex-col bg-editorialWhite text-charcoal">
-
           <Navbar locale={locale} dict={dictionary} />
 
           <motion.main
@@ -95,7 +100,6 @@ export default function RootLayoutShell({
           </motion.main>
 
           <Footer locale={locale} dict={dictionary} />
-
         </div>
       )}
     </>
